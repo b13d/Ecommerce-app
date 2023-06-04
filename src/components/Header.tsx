@@ -15,6 +15,7 @@ export default function Header() {
         window.location.pathname !== undefined &&
         currentUrl !== window.location.pathname
       ) {
+        console.log(window.location.pathname);
         setCurrentUrl(window.location.pathname);
       }
     }
@@ -57,8 +58,11 @@ export default function Header() {
         </div>
         {currentUrl !== "" && (
           <div className="py-[25px] mb-[100px]">
-            
-            <p>{`Home > ${currentUrl.split("/")[1]}`}</p>
+            <p>{`Home > ${currentUrl.split("/")[1]} ${
+              currentUrl.split("/").length > 2
+                ? `> ${currentUrl.split("/")[2]}`
+                : ""
+            } `}</p>
           </div>
         )}
       </div>

@@ -213,7 +213,7 @@ export default function Products() {
         <section className="RightProducts grid grid-cols-3 gap-3 w-[100%] grid-rows-[313px]">
         <div className="flex flex-col border rounded-xl p-4 max-h-[313px]">
           <div className="flex justify-center relative">
-            <img
+            <Image
               className="absolute right-0"
               src="/images/favourites.png"
               alt="favourites"
@@ -230,17 +230,17 @@ export default function Products() {
             <p className="text-[#1B5A7D] font-semibold">Photik</p>
             <p className="font-bold">$11,70</p>
             <div className="flex gap-2">
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
             </div>
           </div>
         </div>
         <div className="flex flex-col border rounded-xl p-4 max-h-[313px]">
           <div className="flex justify-center relative">
-            <img
+            <Image
               className="absolute right-0"
               src="/images/favourites.png"
               alt="favourites"
@@ -257,17 +257,17 @@ export default function Products() {
             <p className="text-[#1B5A7D] font-semibold">Photik</p>
             <p className="font-bold">$11,70</p>
             <div className="flex gap-2">
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
             </div>
           </div>
         </div>
         <div className="flex flex-col border rounded-xl p-4 max-h-[313px]">
           <div className="flex justify-center relative">
-            <img
+            <Image
               className="absolute right-0"
               src="/images/favourites.png"
               alt="favourites"
@@ -284,17 +284,17 @@ export default function Products() {
             <p className="text-[#1B5A7D] font-semibold">Photik</p>
             <p className="font-bold">$11,70</p>
             <div className="flex gap-2">
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
             </div>
           </div>
         </div>
         <div className="flex flex-col border rounded-xl p-4 max-h-[313px]">
           <div className="flex justify-center relative">
-            <img
+            <Image
               className="absolute right-0"
               src="/images/favourites.png"
               alt="favourites"
@@ -311,17 +311,17 @@ export default function Products() {
             <p className="text-[#1B5A7D] font-semibold">Photik</p>
             <p className="font-bold">$11,70</p>
             <div className="flex gap-2">
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
             </div>
           </div>
         </div>
         <div className="flex flex-col border rounded-xl p-4 max-h-[313px]">
           <div className="flex justify-center relative">
-            <img
+            <Image
               className="absolute right-0"
               src="/images/favourites.png"
               alt="favourites"
@@ -338,17 +338,17 @@ export default function Products() {
             <p className="text-[#1B5A7D] font-semibold">Photik</p>
             <p className="font-bold">$11,70</p>
             <div className="flex gap-2">
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
             </div>
           </div>
         </div>
         <div className="flex flex-col border rounded-xl p-4 max-h-[313px]">
           <div className="flex justify-center relative">
-            <img
+            <Image
               className="absolute right-0"
               src="/images/favourites.png"
               alt="favourites"
@@ -365,17 +365,17 @@ export default function Products() {
             <p className="text-[#1B5A7D] font-semibold">Photik</p>
             <p className="font-bold">$11,70</p>
             <div className="flex gap-2">
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
             </div>
           </div>
         </div>
         <div className="flex flex-col border rounded-xl p-4 max-h-[313px]">
           <div className="flex justify-center relative">
-            <img
+            <Image
               className="absolute right-0"
               src="/images/favourites.png"
               alt="favourites"
@@ -392,17 +392,17 @@ export default function Products() {
             <p className="text-[#1B5A7D] font-semibold">Photik</p>
             <p className="font-bold">$11,70</p>
             <div className="flex gap-2">
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
             </div>
           </div>
         </div>
         <div className="flex flex-col border rounded-xl p-4 max-h-[313px]">
           <div className="flex justify-center relative">
-            <img
+            <Image
               className="absolute right-0"
               src="/images/favourites.png"
               alt="favourites"
@@ -419,17 +419,17 @@ export default function Products() {
             <p className="text-[#1B5A7D] font-semibold">Photik</p>
             <p className="font-bold">$11,70</p>
             <div className="flex gap-2">
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
             </div>
           </div>
         </div>
         <div className="flex flex-col border rounded-xl p-4 max-h-[313px]">
           <div className="flex justify-center relative">
-            <img
+            <Image
               className="absolute right-0"
               src="/images/favourites.png"
               alt="favourites"
@@ -446,11 +446,11 @@ export default function Products() {
             <p className="text-[#1B5A7D] font-semibold">Photik</p>
             <p className="font-bold">$11,70</p>
             <div className="flex gap-2">
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
-              <img src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
+              <Image src="/images/star.png" alt="star" />
             </div>
           </div>
         </div>

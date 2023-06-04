@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  /* background-color: #bdb2a7; */
-}
 
 .wrapper {
   max-width: 1440px;
@@ -14,4 +11,8 @@ body {
 input[type='checkbox'] {
   width: 15px;
   height: 15px;
+}
+
+.gridCol {
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
 }
