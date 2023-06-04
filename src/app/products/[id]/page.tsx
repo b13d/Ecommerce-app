@@ -22,18 +22,18 @@ export default async function Product({ params }: { params: { id: string } }) {
         <section className="flex gap-10 mb-[75px]">
           <div className="flex flex-col gap-4">
             <div>
-              <Image src="/images/currentProduct.png" alt="current-product" />
+              <img src="/images/currentProduct.png" alt="current-product" />
             </div>
 
             <div className="flex  justify-between">
-              <Image
+              <img
                 className="border rounded-2xl h-[150px]"
                 src="/images/popular-product-3.png"
                 width={310}
                 height={150}
                 alt="next-product"
               />
-              <Image
+              <img
                 className="border rounded-2xl h-[150px]"
                 src="/images/popular-product-3.png"
                 width={310}
@@ -49,11 +49,11 @@ export default async function Product({ params }: { params: { id: string } }) {
               </h1>
               <p>$11,70</p>
               <div className="flex gap-1 items-center">
-                <Image src="/images/star-gold.png" alt="star" />
-                <Image src="/images/star-gold.png" alt="star" />
-                <Image src="/images/star-gold.png" alt="star" />
-                <Image src="/images/star-gold.png" alt="star" />
-                <Image src="/images/star-gold.png" alt="star" />
+                <img src="/images/star-gold.png" alt="star" />
+                <img src="/images/star-gold.png" alt="star" />
+                <img src="/images/star-gold.png" alt="star" />
+                <img src="/images/star-gold.png" alt="star" />
+                <img src="/images/star-gold.png" alt="star" />
                 <span>No reviews</span>
               </div>
               <h1>
@@ -96,7 +96,7 @@ export default async function Product({ params }: { params: { id: string } }) {
                   Buy it now
                 </button>
                 <div className="bg-gray-300 rounded-full p-4">
-                  <Image
+                  <img
                     className="w-[36px] h-[36px]"
                     src="/images/heart.svg"
                     alt="heart"
@@ -114,9 +114,9 @@ export default async function Product({ params }: { params: { id: string } }) {
               <div className="flex gap-2">
                 <h1>Share:</h1>
                 <div className="flex gap-4">
-                  <Image src="/images/facebook.png" alt="social-icon" />
-                  <Image src="/images/whatsapp.png" alt="social-icon" />
-                  <Image src="/images/google.png" alt="social-icon" />
+                  <img src="/images/facebook.png" alt="social-icon" />
+                  <img src="/images/whatsapp.png" alt="social-icon" />
+                  <img src="/images/google.png" alt="social-icon" />
                 </div>
               </div>
             </div>

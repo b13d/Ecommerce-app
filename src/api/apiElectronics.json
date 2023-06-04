@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "url": "/images/electronics/laptop-1.png",
+    "title": "Ноутбук Huawei MateBook D 15 BOD-WDI9, 15.6",
+    "price": 40000,
+    "star": 0,
+    "color": "black",
+    "category": "laptop"
+  },
+  {
+    "id": 2,
+    "url": "/images/electronics/smartphone-1.png",
+    "title": "Смартфон Huawei nova 10 SE 8/128Gb, серебристый",
+    "price": 21000,
+    "star": 0,
+    "color": "black",
+    "category": "smartphone"
+  },
+  {
+    "id": 3,
+    "url": "/images/electronics/tv-1.png",
+    "title": "43 Телевизор Xiaomi Mi TV A2, 4K Ultra HD, черный, СМАРТ ТВ, Android",
+    "price": 25000,
+    "star": 0,
+    "color": "black",
+    "category": "tv"
+  }
+]
