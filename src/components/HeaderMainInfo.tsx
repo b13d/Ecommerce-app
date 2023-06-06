@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import apiElectronics from "../api/apiElectronics.json";
+import { motion } from "framer-motion"
 
 export default function HeaderMainInfo() {
   const [currentImage, setCurrentImage] = useState(0);

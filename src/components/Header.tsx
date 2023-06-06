@@ -5,6 +5,7 @@ import Image from "next/image";
 import HeaderMainInfo from "@/components/HeaderMainInfo";
 import Slider from "@/components/Slider";
 import Link from "next/link";
+import { easeOut, motion } from "framer-motion";
 
 export default function Header() {
   const [currentUrl, setCurrentUrl] = useState("");
@@ -34,10 +35,24 @@ export default function Header() {
     setModal(false);
   };
 
+  const variants = {
+    open: { opacity: 1, x: 0, y: 0 },
+    closed: { opacity: 0, x: "-100%", y: "-100%" },
+  };
+
   return (
     <>
-      {modal && (
-        <div className="background-modal">
+      {
+        <motion.div
+          layout
+          className="background-modal"
+          animate={modal ? "open" : "closed"}
+          transition={{
+            opacity: { ease: "easeOut" },
+            layout: { duration: 0.3 },
+          }}
+          variants={variants}
+        >
           <div className="modal flex flex-col items-center">
             <Link onClick={handleClickModal} href="/">
               Home
@@ -49,8 +64,8 @@ export default function Header() {
               Cart
             </Link>
           </div>
-        </div>
-      )}
+        </motion.div>
+      }
       <div className="max-w-[1300px] m-auto">
         <div className="wrapper-header flex justify-between pt-[20px]  pb-[20px] bg-white/30 backdrop-blur items-center">
           <div className="flex items-center gap-4">
@@ -66,7 +81,14 @@ export default function Header() {
             </label>
             <h1>MENU</h1>
           </div>
-          <div><Image src="/images/icon-company1.png" width={70} height={70} alt="icon" /></div>
+          <div>
+            <Image
+              src="/images/icon-company1.png"
+              width={70}
+              height={70}
+              alt="icon"
+            />
+          </div>
           <div className="flex items-center gap-4">
             <Image
               className="cursor-pointer"
@@ -76,14 +98,14 @@ export default function Header() {
               alt="icon-find"
             />
             <Image
-            className="cursor-pointer"
+              className="cursor-pointer"
               width={25}
               height={25}
               src="/images/user.png"
               alt="icon-user"
             />
             <Image
-            className="cursor-pointer"
+              className="cursor-pointer"
               width={25}
               height={25}
               src="/images/shopping-cart.png"
