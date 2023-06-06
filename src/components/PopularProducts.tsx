@@ -1,11 +1,32 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import SaleUP from "@/components/SaleUP";
 import AboutQuality from "@/components/AboutQuality";
 import Comments from "@/components/Comments";
 import Sponsers from "@/components/Sponsers";
+import Link from "next/link";
+
+type TNamesLi = {
+  Cameras: string;
+  Laptops: string;
+  Tablets: string;
+  Mouse: string;
+};
+
+const NamesLi: TNamesLi = {
+  Cameras: "cameras",
+  Laptops: "laptops",
+  Tablets: "tablets",
+  Mouse: "mouse",
+};
 
 export default function PopularProducts() {
+  const handleClick = (name: string) => {
+    console.log(name);
+  };
+
   return (
     <section className="max-w-[1300px] m-auto">
       <div className="flex justify-between mb-[53px]">
@@ -15,16 +36,28 @@ export default function PopularProducts() {
 
         <div>
           <ul className="flex gap-3">
-            <li className="rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border border-[#1B5A7D]">
+            <li
+              onClick={() => handleClick(NamesLi.Cameras)}
+              className="cursor-pointer rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border border-[#1B5A7D]"
+            >
               Cameras
             </li>
-            <li className="rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border ">
+            <li
+              onClick={() => handleClick(NamesLi.Laptops)}
+              className="cursor-pointer rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border "
+            >
               Laptops
             </li>
-            <li className="rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border ">
+            <li
+              onClick={() => handleClick(NamesLi.Tablets)}
+              className="cursor-pointer rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border "
+            >
               Tablets
             </li>
-            <li className="rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border ">
+            <li
+              onClick={() => handleClick(NamesLi.Mouse)}
+              className="cursor-pointer rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border "
+            >
               Mouse
             </li>
           </ul>
