@@ -144,11 +144,11 @@ export default function PopularProducts() {
           );
         })}
       </motion.section>
-      <div className="flex gap-2 justify-center my-[50px]">
+      {/* <div className="flex gap-2 justify-center my-[50px]">
         <span className="w-[15px] h-[15px]  border bg-[#ff8d41] rounded-md block"></span>
         <span className="w-[15px] h-[15px]  border rounded-md block"></span>
         <span className="w-[15px] h-[15px]   border rounded-md block"></span>
-      </div>
+      </div> */}
       <SaleUP />
       <AboutQuality />
       <Comments />

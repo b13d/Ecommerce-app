@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, MotionValue, useTransform } from "framer-motion";
+
+function useParallax(value: MotionValue<number>, distance: number) {
+  return useTransform(value, [0, 1], [-distance, distance]);
+}
 
 export default function SaleUP() {
   const variants = {
-    initial: { scale: 1.5 },
+    initial: { opacity: 0 },
 
     visible: {
-      scale: 1,
-      transition: { duration: 4 },
+      opacity: 1,
+      // y: -25,
+      transition: { duration: 4, type: "spring" },
     },
   };
 
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref });
+  const y = useParallax(scrollYProgress, 100);
+
+  console.log(y);
+
   return (
     <motion.section
+      ref={ref}
+      style={{ y }}
       initial="initial"
       whileInView="visible"
       variants={variants}

@@ -46,6 +46,7 @@ export default function Header() {
         <motion.div
           layout
           className="background-modal"
+          initial={{ opacity: 0 }}
           animate={modal ? "open" : "closed"}
           transition={{
             opacity: { ease: "easeOut" },
@@ -58,7 +59,7 @@ export default function Header() {
               Home
             </Link>
             {/* ТУТ ИСПРАВИТЬ */}
-            <Link onClick={handleClickModal} href="/products"> 
+            <Link onClick={handleClickModal} href="/products">
               Products
             </Link>
             <Link onClick={handleClickModal} href="/products/cart">
