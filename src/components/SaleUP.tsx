@@ -12,8 +12,7 @@ export default function SaleUP() {
 
     visible: {
       opacity: 1,
-      // y: -25,
-      transition: { duration: 4, type: "spring" },
+      transition: { duration: 4 },
     },
   };
 

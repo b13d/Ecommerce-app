@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import apiElectronics from "../api/apiElectronics.json";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 export default function HeaderMainInfo() {
   const [currentImage, setCurrentImage] = useState(0);
@@ -30,14 +30,31 @@ export default function HeaderMainInfo() {
     }, 1000);
   }, []);
 
+  const variants = {
+    initial: {
+      rotateX: 10,
+    },
+
+    visible: {
+      rotateX: 25,
+      transition: { duration: 4 },
+    },
+  };
+
   return (
-    <section className="max-w-[1300px] m-auto flex justify-around items-center border shadow-xl p-4 overflow-hidden h-[400px] ease-out">
+    <motion.section
+      variants={variants}
+      initial="initial"
+      whileInView="visible"
+      className="max-w-[1300px] m-auto border shadow-xl p-4 overflow-hidden h-[400px] ease-out"
+    >
       {apiElectronics.map((product, index) => {
         if (index === currentImage) {
-          let tempImg = Image;
-
           return (
-            <>
+            <motion.section
+              className="flex items-center justify-around"
+              key={index}
+            >
               <div className="w-[300px] ease-out">
                 <h1 className="text-[22px]">{product.title}</h1>
               </div>
@@ -69,10 +86,10 @@ export default function HeaderMainInfo() {
                 </span>
                 ₽
               </h1>
-            </>
+            </motion.section>
           );
         }
       })}
-    </section>
+    </motion.section>
   );
 }
