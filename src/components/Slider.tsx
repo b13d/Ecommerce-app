@@ -43,7 +43,6 @@ export default function Slider() {
 
     moveBy += directionFactor.current * moveBy * velocityFactor.get();
 
-    // console.log(moveBy);
 
     baseX.set(baseX.get() + moveBy);
   });
