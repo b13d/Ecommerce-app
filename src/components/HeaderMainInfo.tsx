@@ -12,7 +12,7 @@ export default function HeaderMainInfo() {
     setPercent(0);
 
     setInterval(() => {
-      console.log(num);
+      // console.log(num);
 
       setPercent(-20);
 

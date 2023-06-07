@@ -13,7 +13,7 @@ interface IUser {
 export default async function Product({ params }: { params: { id: string } }) {
   const data: IUser = await getData(params.id);
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <>

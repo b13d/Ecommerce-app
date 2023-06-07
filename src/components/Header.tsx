@@ -19,7 +19,7 @@ export default function Header() {
         window.location.pathname !== undefined &&
         currentUrl !== window.location.pathname
       ) {
-        console.log(window.location.pathname);
+        // console.log(window.location.pathname);
         setCurrentUrl(window.location.pathname);
       }
     }
@@ -57,7 +57,8 @@ export default function Header() {
             <Link onClick={handleClickModal} href="/">
               Home
             </Link>
-            <Link onClick={handleClickModal} href="/products">
+            {/* ТУТ ИСПРАВИТЬ */}
+            <Link onClick={handleClickModal} href="/products/1"> 
               Products
             </Link>
             <Link onClick={handleClickModal} href="/products/cart">

@@ -38,7 +38,7 @@ export default function PopularProducts() {
   const [images, setImages] = useState<string[]>([]);
 
   const handleClick = (name: string) => {
-    console.log(name);
+    // console.log(name);
   };
 
   const variants = {

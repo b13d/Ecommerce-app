@@ -33,7 +33,7 @@ export default function Slider() {
   useAnimationFrame((t, delta) => {
     // let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
-    console.log(delta);
+    // console.log(delta);
     let moveBy = directionFactor.current * 0.5 * (delta / 100);
 
     if (velocityFactor.get() < 0) {
@@ -44,7 +44,7 @@ export default function Slider() {
 
     moveBy += directionFactor.current * moveBy * velocityFactor.get();
 
-    console.log(moveBy);
+    // console.log(moveBy);
 
     baseX.set(baseX.get() + moveBy);
   });
