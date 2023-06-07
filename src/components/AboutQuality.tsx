@@ -26,6 +26,7 @@ export default function AboutQuality() {
     <motion.section
       variants={variants}
       initial="initialMain"
+      viewport={{ once: true }}
       whileInView="visibleMain"
       className="max-w-[1300px] grid grid-cols-3 gap-7 bg-[#E2F4FF] py-[44px] px-[120px] rounded-2xl my-[75px]"
     >
