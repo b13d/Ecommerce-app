@@ -58,7 +58,7 @@ export default function Header() {
               Home
             </Link>
             {/* ТУТ ИСПРАВИТЬ */}
-            <Link onClick={handleClickModal} href="/products/1"> 
+            <Link onClick={handleClickModal} href="/products"> 
               Products
             </Link>
             <Link onClick={handleClickModal} href="/products/cart">
