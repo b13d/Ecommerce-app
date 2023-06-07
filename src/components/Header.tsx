@@ -70,7 +70,7 @@ export default function Header() {
       }
       <div className="max-w-[1300px] m-auto">
         <div className="wrapper-header flex justify-between pt-[20px]  pb-[20px] bg-white/30 backdrop-blur items-center">
-          <div className="flex items-center gap-4">
+          <div className="w-[200px] flex items-center gap-4">
             <input
               id="menu__toggle"
               className="opacity-0"
@@ -91,7 +91,7 @@ export default function Header() {
               alt="icon"
             />
           </div>
-          <div className="flex items-center gap-4">
+          <div className="w-[200px] flex items-center justify-end  gap-4">
             <Image
               className="cursor-pointer"
               width={25}

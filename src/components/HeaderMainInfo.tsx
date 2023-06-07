@@ -79,7 +79,7 @@ export default function HeaderMainInfo() {
                   </div>
                 </div>
               </div>
-              <h1 className="text-[30px]">
+              <h1 className="w-[300px] text-[30px]">
                 Цена:{" "}
                 <span className="font-semibold text-orange-400 ease-out">
                   {product.price}
