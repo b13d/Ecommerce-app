@@ -58,7 +58,6 @@ export default function Header() {
             <Link onClick={handleClickModal} href="/">
               Home
             </Link>
-            {/* ТУТ ИСПРАВИТЬ */}
             <Link onClick={handleClickModal} href="/products">
               Products
             </Link>
@@ -106,13 +105,15 @@ export default function Header() {
               src="/images/user.png"
               alt="icon-user"
             />
-            <Image
-              className="cursor-pointer"
-              width={25}
-              height={25}
-              src="/images/shopping-cart.png"
-              alt="icon-shop"
-            />
+            <Link href="/products/cart">
+              <Image
+                className="cursor-pointer"
+                width={25}
+                height={25}
+                src="/images/shopping-cart.png"
+                alt="icon-shop"
+              />
+            </Link>
           </div>
         </div>
         {currentUrl !== "" && (

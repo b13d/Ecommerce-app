@@ -12,15 +12,12 @@ export default function LatestNews() {
     initial: (index: number) => ({
       opacity: 0,
       display: index !== 0 ? "hidden" : "block",
-      gridColumn: "1 / 3",
     }),
 
     visible: (index: number) => ({
       opacity: 1,
-      // gridColumn: "auto",
       display: "block",
       transition: { delay: index * 1.5 },
-      gridColumn: "auto",
     }),
   };
 
@@ -69,13 +66,6 @@ export default function LatestNews() {
           );
         })}
       </div>
-      {/* <div className="flex gap-2 justify-center my-[50px]">
-        <span className="w-[15px] h-[15px]  border bg-[#ff8d41] rounded-md block"></span>
-        <span className="w-[15px] h-[15px]  border rounded-md block"></span>
-        <span className="w-[15px] h-[15px]   border rounded-md block"></span>
-        <span className="w-[15px] h-[15px]   border rounded-md block"></span>
-        <span className="w-[15px] h-[15px]   border rounded-md block"></span>
-      </div> */}
     </section>
   );
 }

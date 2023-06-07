@@ -20,7 +20,7 @@ export default function SaleUP() {
   const { scrollYProgress } = useScroll({ target: ref });
   const y = useParallax(scrollYProgress, 100);
 
-  console.log(y);
+  // console.log(y);
 
   return (
     <motion.section

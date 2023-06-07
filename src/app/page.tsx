@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import PopularProducts from "@/components/PopularProducts";
 import LatestNews from "@/components/LatestNews";
 import Footer from "@/components/Footer";
+import CartComponent from "@/components/CartComponent";
 
 export default function home() {
   return (
@@ -13,6 +14,7 @@ export default function home() {
         <PopularProducts />
         <LatestNews />
       </div>
+      {/* <CartComponent /> */}
       <Footer />
     </>
   );

@@ -9,6 +9,7 @@ import Sponsers from "@/components/Sponsers";
 import Link from "next/link";
 import apiElectronics from "../api/apiElectronics.json";
 import { motion, AnimatePresence } from "framer-motion";
+import CartComponent from "./CartComponent";
 
 interface IApi {
   id: number;
@@ -35,7 +36,7 @@ const NamesLi: TNamesLi = {
 };
 
 export default function PopularProducts() {
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<IApi[]>([]);
 
   const handleClick = (name: string) => {
     // console.log(name);
@@ -54,11 +55,12 @@ export default function PopularProducts() {
   useEffect(() => {
     const tempApi = apiElectronics;
 
-    let tempArrUrl: string[] = [];
+    let tempArrUrl: IApi[] = [];
 
     for (let i = 0; i < 4; i++) {
       tempApi.map((value) => {
-        tempArrUrl.push(value.url);
+        tempArrUrl.push(value);
+        // tempArrUrl.push(value.url);
       });
     }
 
@@ -103,52 +105,61 @@ export default function PopularProducts() {
       </div>
 
       <motion.section className="grid grid-cols-4 gap-6">
-        {images.map((value, index) => {
-          return (
-            <motion.div
-              custom={index}
-              initial="initial"
-              variants={variants}
-              whileInView="visible"
-              viewport={{ once: true }}
-              key={index}
-              className="flex flex-col border rounded-xl p-4"
-            >
-              <div className="flex justify-center relative">
-                <img
-                  className="absolute right-0 cursor-pointer"
-                  src="/images/favourites.png"
-                  alt="favourites"
-                />
-                <Image
-                  className="object-contain w-[235px] h-[200px]"
-                  src={value}
-                  width={180}
-                  height={180}
-                  alt="popular-item"
-                />
-              </div>
-
-              <div className="flex flex-col gap-4">
-                <p className="text-[#1B5A7D] font-semibold">Photik</p>
-                <p className="font-bold">$11,70</p>
-                <div className="flex gap-2">
-                  <img src="/images/star.png" alt="star" />
-                  <img src="/images/star.png" alt="star" />
-                  <img src="/images/star.png" alt="star" />
-                  <img src="/images/star.png" alt="star" />
-                  <img src="/images/star.png" alt="star" />
+        {images &&
+          images.map((value, index) => {
+            return (
+              <motion.div
+                custom={value.id}
+                initial="initial"
+                variants={variants}
+                whileInView="visible"
+                viewport={{ once: true }}
+                key={index}
+                className="flex flex-col border rounded-xl p-4"
+              >
+                <div className="flex justify-center relative">
+                  <Image
+                    className="object-contain w-[235px] h-[200px] mb-3"
+                    src={value.url}
+                    width={180}
+                    height={180}
+                    alt="popular-item"
+                  />
                 </div>
-              </div>
-            </motion.div>
-          );
-        })}
+
+                <div className="flex flex-col gap-1">
+                  <p className="min-h-[70px] text-[#1B5A7D] font-semibold">
+                    {value.title}
+                  </p>
+                  <p className="font-bold text-[20px] ">
+                    <span className="text-orange-600">{value.price}</span>₽
+                  </p>
+                  <div className="flex gap-2">
+                    <button>
+                      <Image
+                        className="w-[32px] h-[32px] border-[#313131] border-2 p-1 rounded-md hover:bg-gray-300"
+                        width={32}
+                        height={32}
+                        src="/images/shopping-cart.png"
+                        alt="buy-icon"
+                      />
+                    </button>
+                    <button>
+                      <Image
+                        className="w-[32px] h-[32px] border-[#313131] border-2 p-1 rounded-md hover:bg-gray-300"
+                        width={32}
+                        height={32}
+                        src="/images/heart.png"
+                        alt="buy-icon"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
       </motion.section>
-      {/* <div className="flex gap-2 justify-center my-[50px]">
-        <span className="w-[15px] h-[15px]  border bg-[#ff8d41] rounded-md block"></span>
-        <span className="w-[15px] h-[15px]  border rounded-md block"></span>
-        <span className="w-[15px] h-[15px]   border rounded-md block"></span>
-      </div> */}
+      <CartComponent {...images[0]}/>
       <SaleUP />
       <AboutQuality />
       <Comments />
