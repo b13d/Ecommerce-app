@@ -31,7 +31,6 @@ export default function Slider() {
 
   const directionFactor = useRef<number>(1);
   useAnimationFrame((t, delta) => {
-    // let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
     // console.log(delta);
     let moveBy = directionFactor.current * 0.5 * (delta / 100);
