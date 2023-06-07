@@ -6,10 +6,10 @@ export default function SaleUP() {
   const variants = {
     initial: { scale: 1.5 },
 
-    visible: (index: number) => ({
+    visible: {
       scale: 1,
-      transition: { duration: 2 },
-    }),
+      transition: { duration: 4 },
+    },
   };
 
   return (

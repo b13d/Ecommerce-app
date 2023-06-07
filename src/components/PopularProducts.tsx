@@ -109,8 +109,8 @@ export default function PopularProducts() {
               custom={index}
               initial="initial"
               variants={variants}
-              viewport={{ once: true }}
               whileInView="visible"
+              viewport={{ once: true }}
               key={index}
               className="flex flex-col border rounded-xl p-4"
             >
