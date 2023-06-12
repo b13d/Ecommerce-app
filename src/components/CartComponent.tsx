@@ -12,28 +12,30 @@ interface IApi {
   category: string;
 }
 
-export default function CartComponent(newProduct: IApi) {
+interface IProps {
+  newProduct: IApi | undefined;
+}
+
+// newProduct: IApi | undefined,
+// setProductsLast: React.Dispatch<React.SetStateAction<IApi | undefined>>
+
+export default function CartComponent({ newProduct }: IProps) {
   const [products, setProducts] = useState<IApi[]>([]);
 
-  console.log(newProduct);
-
   useEffect(() => {
-    let tempArrProducts: IApi[] = [];
+    let tempArrProducts: IApi[] = [...products];
 
-    if (products !== null && newProduct.id !== undefined) {
-      tempArrProducts.push(...products, newProduct); // мб тут ошибка
+    if (products !== null && newProduct !== undefined) {
+      tempArrProducts.push(newProduct); // мб тут ошибка
 
       setProducts(tempArrProducts);
     }
   }, [newProduct]);
 
-  console.log(products);
-  console.log(newProduct.id);
-
   return (
     <>
-      {(products.length > 0 || newProduct.id !== undefined) && (
-        <div className="fixed top-3 right-3 rounded-md border-[#353535] border-2  w-[300px] h-auto">
+      {(products.length > 0 || newProduct !== undefined) && (
+        <div className="cart fixed top-3 right-3 rounded-md border-[#353535] border-2  w-[300px] h-auto">
           {products &&
             products.map((value, index) => {
               return (
