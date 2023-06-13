@@ -5,12 +5,15 @@ import Image from "next/image";
 import HeaderMainInfo from "@/components/HeaderMainInfo";
 import Slider from "@/components/Slider";
 import Link from "next/link";
-import { easeOut, motion } from "framer-motion";
+import { easeOut, motion, useScroll } from "framer-motion";
 
 export default function Header() {
   const [currentUrl, setCurrentUrl] = useState("");
   const [modal, setModal] = useState(false);
   const [checked, setChecked] = useState(false);
+
+  const { scrollYProgress, scrollY } = useScroll();
+
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -45,7 +48,7 @@ export default function Header() {
       {
         <motion.div
           layout
-          className="background-modal"
+          className="background-modal z-20 relative"
           initial={{ opacity: 0, display: "none" }}
           animate={modal ? "open" : "closed"}
           transition={{
@@ -68,7 +71,10 @@ export default function Header() {
         </motion.div>
       }
       <div className="max-w-[1300px] m-auto">
-        <div className="wrapper-header flex justify-between pt-[20px]  pb-[20px] bg-white/30 backdrop-blur items-center">
+        <motion.div
+          style={{ translateY: scrollY }}
+          className="wrapper-header z-10 relative flex justify-between pt-[20px]  pb-[20px] bg-white/30 backdrop-blur items-center"
+        >
           <div className="w-[200px] flex items-center gap-4">
             <input
               id="menu__toggle"
@@ -115,9 +121,9 @@ export default function Header() {
               />
             </Link>
           </div>
-        </div>
+        </motion.div>
         {currentUrl !== "" && (
-          <div className="py-[25px] mb-[100px]">
+          <div className="py-[25px] mb-[25px]">
             <p>{`Home > ${currentUrl.split("/")[1]} ${
               currentUrl.split("/").length > 2
                 ? `> ${currentUrl.split("/")[2]}`

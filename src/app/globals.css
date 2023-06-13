@@ -16,7 +16,7 @@ input[type='checkbox'] {
 
 
 .gridCol {
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr .5fr 1fr .5fr;
 }
 
 #menu__toggle:checked + .menu__btn > span {
@@ -68,7 +68,10 @@ input[type='checkbox'] {
   background: rgb(0, 0, 0);
   right: 0;
   top: 0;
-  z-index: 1;
+}
+
+.wrapper-header {
+  transition: all 0ms ease-in-out;
 }
 
 .modal {
