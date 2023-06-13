@@ -20,10 +20,11 @@ export default function Sponsers() {
   };
 
   return (
-    <motion.section className="flex justify-between max-w-[1300px] bg-[#E2F4FF] py-[40px] px-[30px] items-center my-[50px]">
+    <motion.section className="flex justify-between max-lg:flex-wrap max-lg:gap-5 lg:max-w-[1300px] max-xl:w-full bg-[#E2F4FF] py-[40px] px-[30px] items-center my-[50px]">
       {imagesURL.map((value, index) => {
         return (
           <motion.img
+            className="max-xl: w-[150px]"
             custom={index}
             variants={variants}
             initial="initial"

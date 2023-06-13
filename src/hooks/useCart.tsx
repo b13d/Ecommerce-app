@@ -17,6 +17,9 @@ export default function UseCart() {
   const [discount, setDiscount] = useState(0);
 
   const [products, setProducts] = useState<IApi[]>([]);
+  const [currentWidthScreen, setCurrentWidthScreen] = useState<number>(
+    document.getElementsByTagName("body")[0].clientWidth
+  );
 
   useEffect(() => {
     if (localProducts !== null) {
@@ -103,11 +106,25 @@ export default function UseCart() {
     setCountQuantity(tempArr);
   };
 
+  let widthScreen: number =
+    document.getElementsByTagName("body")[0].clientWidth;
+
+  window.onresize = function () {
+    widthScreen = document.getElementsByTagName("body")[0].clientWidth;
+
+    if (widthScreen > 1000 && currentWidthScreen < 1000) {
+      setCurrentWidthScreen(widthScreen);
+    } else if (widthScreen < 1000 && currentWidthScreen > 1000) {
+      setCurrentWidthScreen(widthScreen);
+    }
+    console.log(widthScreen);
+  };
+
   return (
-    <section className="max-w-[1300px] m-auto flex gap-2 items-start justify-between">
-      <div className="w-[75%]">
+    <section className="max-w-[1300px] m-auto flex max-sm:flex-col gap-2 items-start justify-between">
+      <div className=" w-[100%] lg:w-[75%]">
         <div className="grid  mb-6">
-          <div className="grid gridCol grid-cols-4 bg-[#E2F4FF] px-[30px] py-[15px] ">
+          <div className="grid gridCol grid-cols-4 bg-[#E2F4FF] max-sm:p-2 sm:px-[30px] sm:py-[15px] ">
             <h1>Product</h1>
             <h1 className="text-center">Price</h1>
             <h1 className="text-center">Quantity</h1>
@@ -126,11 +143,11 @@ export default function UseCart() {
                   transition={{ duration: 0.3 * index }}
                   viewport={{ once: true }}
                   key={index}
-                  className="grid gridCol grid-cols-4 items-center px-[30px] py-[15px] relative border-b-2 border-gray-300"
+                  className="grid gridCol grid-cols-4 items-center max-sm:p-2 sm:px-[30px] sm:py-[15px] relative border-b-2 border-gray-300"
                 >
-                  <div className="flex gap-2 items-center">
+                  <div className="flex max-lg:flex-col gap-2 items-center justify-center text-center">
                     <Image
-                      className="max-h-[100px]"
+                      className="max-lg:w-[100px] max-h-[100px]"
                       width={135}
                       height={120}
                       src={value.url}
@@ -138,45 +155,49 @@ export default function UseCart() {
                     />
 
                     <div>
-                      <p className="">{value.title}</p>
-                      <p>Color: {value.color}</p>
+                      <p className="max-sm:text-[10px] max-lg:text-[14px]">
+                        {value.title}
+                      </p>
+                      <p className="max-sm:hidden">Color: {value.color}</p>
                     </div>
                   </div>
 
                   <div>
-                    <h1 className="text-center">{value.price} ₽</h1>
+                    <h1 className="max-sm:text-[12px] text-center">
+                      {value.price}₽
+                    </h1>
                   </div>
 
-                  <div className="flex gap-1  justify-center items-center">
+                  <div className="flex gap-1 max-lg:flex-col  justify-center items-center">
                     <button
                       onClick={() => handleSubtract(index)}
-                      className="w-[40px] h-[40px] bg-gray-200 border border-[#cccccc] "
+                      className="w-[40px] h-[40px] hover:bg-[#2e2e2e] hover:text-white bg-[#f0f0f0] duration-300 ease-in-out text-black  "
                     >
                       -
                     </button>
-                    <button className="w-[40px] h-[40px] bg-gray-200 border border-[#cccccc]">
+                    <button className="w-[40px] h-[40px] text-white bg-[#2c2c2c]">
                       {countQuantity[index]}
                     </button>
                     <button
                       onClick={() => handleAdd(index)}
-                      className="w-[40px] h-[40px] bg-gray-200 border border-[#cccccc]"
+                      className="w-[40px] h-[40px] hover:bg-[#2e2e2e] hover:text-white  bg-[#f0f0f0] duration-300 ease-in-out text-black "
                     >
                       +
                     </button>
                   </div>
 
                   <div>
-                    <h1 className="text-center">
+                    <h1 className="max-sm:text-[12px] text-center">
                       {countQuantity.length > 0
                         ? value.price * countQuantity[index]
-                        : 0}{" "}
+                        : 0}
                       ₽
                     </h1>
                   </div>
 
                   <div
                     onClick={(e) => handleDelete(e, index)}
-                    className="cursor-pointer absolute right-0 border text-white bg-red-500  px-2  rounded-full"
+                    className="max-sm:top-2 cursor-pointer absolute right-0 border text-white bg-red-500  px-2  rounded-full"
                   >
                     x
                   </div>
@@ -189,7 +210,7 @@ export default function UseCart() {
         <div className="flex gap-3 mb-6">
           <Link
             href="/"
-            className="font-semibold py-3 px-3 bg-[#EDA415] m-auto text-white rounded-3xl"
+            className="max-sm:text-[14px] max-sm:p-2 max-sm:text-center font-semibold sm:py-3 sm:px-3 bg-[#EDA415] m-auto text-white rounded-2xl"
           >
             Continue shopping
           </Link>
@@ -197,7 +218,7 @@ export default function UseCart() {
           {products.length > 0 && (
             <button
               onClick={() => handleDeleteAll()}
-              className="font-semibold py-3 px-9 w-[50%] m-auto border-[#C33131] border text-[#C33131] rounded-3xl"
+              className="font-semibold sm:py-3 sm:px-9 w-[50%] m-auto border-[#C33131] max-sm:text-[14px] max-sm:p-2 max-sm:text-center border text-[#C33131] rounded-2xl"
             >
               Clear cart
             </button>
@@ -206,20 +227,20 @@ export default function UseCart() {
       </div>
 
       <motion.div
-        style={{ translateY: scrollY }}
-        className="grid relative mb-6 w-[35%] border"
+        style={{ translateY: currentWidthScreen > 1000 ? scrollY : "0px" }}
+        className="grid relative mb-6 max-sm:w-full sm:w-[35%] max-sm:p-1"
       >
-        <div className="bg-[#E2F4FF] px-[30px] py-[15px]">
+        <div className="bg-[#E2F4FF] max-sm:p-2 max-sm:mb-2 sm:px-[30px] sm:py-[15px]">
           <h1>Cart total</h1>
         </div>
-        <div className="p-6">
+        <div className=" sm:p-6">
           <div className="flex flex-col gap-3">
             <div className="flex justify-between border-b-2 border-gray-300 pb-3 mb-3">
               <h1>Subtotal</h1>
-              <h1>{sum} ₽</h1>
+              <h1>{sum}₽</h1>
             </div>
 
-            <div className="relative  flex items-center  pb-3 mb-3">
+            <div className="relative  flex items-center max-sm:gap-2  pb-3 mb-3">
               <input
                 ref={refInput}
                 type="text"
@@ -228,7 +249,7 @@ export default function UseCart() {
               />
               <span
                 onClick={(e) => handleApply(e)}
-                className="hover:underline  cursor-pointer absolute right-0 mr-[10px]"
+                className="hover:underline  cursor-pointer sm:absolute sm:right-0 mr-[10px]"
               >
                 Apply
               </span>
@@ -236,7 +257,7 @@ export default function UseCart() {
 
             <div className="flex justify-between">
               <h1>Total amount</h1>
-              <h1>{discount !== 0 ? sum - (sum / 100) * discount : sum} ₽</h1>
+              <h1>{discount !== 0 ? sum - (sum / 100) * discount : sum}₽</h1>
             </div>
 
             <button className="py-3 px-9 w-[80%] bg-[#EDA415] m-auto text-white rounded-3xl">

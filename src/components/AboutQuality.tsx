@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -22,13 +24,32 @@ export default function AboutQuality() {
     },
   };
 
+  let whileIn: HTMLBodyElement | undefined = undefined;
+
+  if (typeof window !== "undefined") {
+    whileIn =
+      document !== null ? document.getElementsByTagName("body")[0] : undefined;
+  }
+
   return (
     <motion.section
       variants={variants}
-      initial="initialMain"
+      initial={
+        whileIn !== undefined
+          ? whileIn.clientWidth > 1000
+            ? "initialMain"
+            : ""
+          : ""
+      }
       viewport={{ once: true }}
-      whileInView="visibleMain"
-      className="max-w-[1300px] grid grid-cols-3 gap-7 bg-[#E2F4FF] py-[44px] px-[120px] rounded-2xl my-[75px]"
+      whileInView={
+        whileIn !== undefined
+          ? whileIn.clientWidth > 1000
+            ? "visibleMain"
+            : ""
+          : ""
+      }
+      className="lg:grid-cols-3  grid gap-7 bg-[#E2F4FF] sm:py-[44px] max-sm:p-2 sm:px-[120px] rounded-2xl my-[75px]"
     >
       <motion.div
         initial="initial"

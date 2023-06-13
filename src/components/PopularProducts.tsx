@@ -55,7 +55,7 @@ export default function PopularProducts() {
     NamesLi.TV,
     NamesLi.All,
   ]);
-  const [selectedCategory, setSelectedCategory] = useState(4)
+  const [selectedCategory, setSelectedCategory] = useState(4);
 
   const variants = {
     initial: { opacity: 0, scale: 0.5 },
@@ -68,7 +68,6 @@ export default function PopularProducts() {
   };
 
   useEffect(() => {
-
     const tempApi = apiElectronics;
 
     let tempArrUrl: IApi[] = [];
@@ -82,8 +81,8 @@ export default function PopularProducts() {
     setImages(tempArrUrl);
   }, []);
 
-  const handleClick = (element: string, index:number) => {
-    setSelectedCategory(index)
+  const handleClick = (element: string, index: number) => {
+    setSelectedCategory(index);
     setCurrentCategory(element);
   };
 
@@ -149,10 +148,10 @@ export default function PopularProducts() {
         </h1>
 
         <div>
-          <ul className="flex gap-3">
+          <ul className="flex gap-3 flex-wrap">
             {listCategory.map((value, index) => {
-              let styleBorder = "" 
-              if (index === selectedCategory) styleBorder = "border-[#1B5A7D]"
+              let styleBorder = "";
+              if (index === selectedCategory) styleBorder = "border-[#1B5A7D]";
               return (
                 <li
                   key={index}
@@ -175,7 +174,7 @@ export default function PopularProducts() {
         </div>
       </div>
 
-      <motion.section className="grid grid-cols-4 gap-6">
+      <motion.section className="max-sm:grid-cols-1 max-lg:grid-cols-2 grid lg:grid-cols-4 gap-6">
         {images &&
           images.map((value, index) => {
             if (

@@ -14,7 +14,6 @@ export default function Header() {
 
   const { scrollYProgress, scrollY } = useScroll();
 
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (

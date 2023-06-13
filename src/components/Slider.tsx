@@ -62,7 +62,7 @@ export default function Slider() {
   }, []);
 
   return (
-    <div className="w-[1300px] m-auto overflow-hidden">
+    <div className="xl:w-[1300px] max-xl:w-full m-auto overflow-hidden">
       <motion.div
         className="flex justify-center  gap-4 py-5 w-full"
         style={{ x }}
@@ -70,7 +70,7 @@ export default function Slider() {
         {images.map((value, index) => {
           return (
             <motion.img
-              className="bg-no-repeat h-[250px] w-[350px] object-scale-down"
+              className="bg-no-repeat max-lg:w-[250px] max-lg:h-[180px] lg:h-[250px] lg:w-[350px] object-scale-down"
               key={index}
               src={images[index]}
               initial={{ opacity: 0, scale: 0 }}

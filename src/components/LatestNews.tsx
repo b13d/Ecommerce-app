@@ -33,7 +33,7 @@ export default function LatestNews() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid max-sm:grid-cols-1 sm:grid-cols-2 gap-6">
         {imagesURL.map((value, index) => {
           return (
             <motion.div

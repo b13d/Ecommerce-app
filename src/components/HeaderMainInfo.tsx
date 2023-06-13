@@ -52,19 +52,19 @@ export default function HeaderMainInfo() {
         if (index === currentImage) {
           return (
             <motion.section
-              className="flex items-center justify-around"
+              className="flex max-lg:flex-col max-lg:gap-3 items-center justify-around"
               key={index}
             >
               <div className="w-[300px] ease-out">
-                <h1 className="text-[22px]">{product.title}</h1>
+                <h1 className="max-lg:text-[18px] lg:text-[22px]">{product.title}</h1>
               </div>
               <div
-                className="flex items-center gap-3 ease-out"
+                className="flex  items-center gap-3 ease-out"
                 key={product.id}
               >
                 <div className="flex flex-col gap-6 items-center">
                   <img
-                    className="w-[350px] object-scale-down h-[250px] ease-out"
+                    className="max-sm:w-[50%] max-sm:h-[50%] sm:w-[350px] object-scale-down sm:h-[250px] ease-out"
                     src={product.url}
                     alt={product.title}
                   />
@@ -79,7 +79,7 @@ export default function HeaderMainInfo() {
                   </div>
                 </div>
               </div>
-              <h1 className="w-[300px] text-[30px]">
+              <h1 className="max-sm:text-[22px] max-lg:w-auto lg:w-[300px] max-lg:text-[26px]  lg:text-[30px]">
                 Цена:{" "}
                 <span className="font-semibold text-orange-400 ease-out">
                   {product.price}

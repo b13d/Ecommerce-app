@@ -21,7 +21,7 @@ export default function Comments() {
 
   return (
     <section className="max-w-[1300px]">
-      <div className="grid grid-cols-3 gap-2 text-[#003F62]">
+      <div className="grid lg:grid-cols-3  max-lg:grid-cols-[300px] max-lg:justify-center  gap-2 text-[#003F62]">
         {imagesURL.map((value, index) => {
           return (
             <motion.div
