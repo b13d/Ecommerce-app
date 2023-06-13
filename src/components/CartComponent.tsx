@@ -25,27 +25,34 @@ export default function CartComponent({
   setShowCart,
 }: IProps) {
   const [products, setProducts] = useState<IApi[]>([]);
-  const [mainTimer, setMainTimer] = useState<NodeJS.Timeout>();
-
-  let timer: NodeJS.Timeout;
+  const [mainTimer, setMainTimer] = useState<number>(0);
+  const [timer, setTimer] = useState<number[]>();
 
   useEffect(() => {
     // setShowCart(true);
 
-    console.log(products);
+    console.log(mainTimer);
 
     if (products.length > 0) {
-      clearTimeout(timer);
       // mb error
-      timer = setTimeout(() => {
+
+      let list: number[] = timer !== undefined ? timer : [];
+
+      let temp = window.setTimeout(() => {
         setShowCart(false);
-        setMainTimer(undefined);
+        setMainTimer(0);
       }, 3000);
 
-      if (mainTimer !== undefined) {
-        clearTimeout(timer);
-      } else {
-        setMainTimer(timer);
+      list.push(temp);
+
+      setTimer(list);
+
+      console.log(timer);
+      console.log(mainTimer);
+
+      if (mainTimer !== undefined && timer !== undefined) {
+        window.clearTimeout(timer[timer.length - 2]);
+        setMainTimer(temp);
       }
     }
 
