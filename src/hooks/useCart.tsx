@@ -13,16 +13,17 @@ export default function UseCart() {
     localProducts = localStorage.getItem("products" || "");
   }
 
+  const refInput = useRef<HTMLInputElement>(null);
+  const [discount, setDiscount] = useState(0);
+
+  const [products, setProducts] = useState<IApi[]>([]);
+
   useEffect(() => {
     if (localProducts !== null) {
       setProducts(JSON.parse(localProducts));
     }
   }, []);
 
-  const refInput = useRef<HTMLInputElement>(null);
-  const [discount, setDiscount] = useState(0);
-
-  const [products, setProducts] = useState<IApi[]>([]);
   // localProducts !== null ? JSON.parse(localProducts) : []
   const handleDelete = (
     element: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -57,7 +58,9 @@ export default function UseCart() {
     });
 
     setCountQuantity(arr);
-  }, []);
+  }, [products]);
+
+  useEffect(() => {}, [countQuantity]);
 
   const { scrollYProgress, scrollY } = useScroll();
   let sum: number = 0;
@@ -111,67 +114,75 @@ export default function UseCart() {
             <h1 className="text-center">Subtotal</h1>
           </div>
           {products.map((value, index) => {
-            sum += value.price * countQuantity[index];
-            return (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 * index }}
-                viewport={{ once: true }}
-                key={index}
-                className="grid gridCol grid-cols-4 items-center px-[30px] py-[15px] relative border-b-2 border-gray-300"
-              >
-                <div className="flex gap-2 items-center">
-                  <Image
-                    className="max-h-[100px]"
-                    width={135}
-                    height={120}
-                    src={value.url}
-                    alt="img"
-                  />
+            if (countQuantity.length > 0) {
+              sum +=
+                countQuantity.length > 0
+                  ? value.price * countQuantity[index]
+                  : 0;
+              return (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 * index }}
+                  viewport={{ once: true }}
+                  key={index}
+                  className="grid gridCol grid-cols-4 items-center px-[30px] py-[15px] relative border-b-2 border-gray-300"
+                >
+                  <div className="flex gap-2 items-center">
+                    <Image
+                      className="max-h-[100px]"
+                      width={135}
+                      height={120}
+                      src={value.url}
+                      alt="img"
+                    />
+
+                    <div>
+                      <p className="">{value.title}</p>
+                      <p>Color: {value.color}</p>
+                    </div>
+                  </div>
 
                   <div>
-                    <p className="">{value.title}</p>
-                    <p>Color: {value.color}</p>
+                    <h1 className="text-center">{value.price} ₽</h1>
                   </div>
-                </div>
 
-                <div>
-                  <h1 className="text-center">{value.price} ₽</h1>
-                </div>
+                  <div className="flex gap-1  justify-center items-center">
+                    <button
+                      onClick={() => handleSubtract(index)}
+                      className="w-[40px] h-[40px] bg-gray-200 border border-[#cccccc] "
+                    >
+                      -
+                    </button>
+                    <button className="w-[40px] h-[40px] bg-gray-200 border border-[#cccccc]">
+                      {countQuantity[index]}
+                    </button>
+                    <button
+                      onClick={() => handleAdd(index)}
+                      className="w-[40px] h-[40px] bg-gray-200 border border-[#cccccc]"
+                    >
+                      +
+                    </button>
+                  </div>
 
-                <div className="flex gap-1  justify-center items-center">
-                  <button
-                    onClick={() => handleSubtract(index)}
-                    className="w-[40px] h-[40px] bg-gray-200 border border-[#cccccc] "
+                  <div>
+                    <h1 className="text-center">
+                      {countQuantity.length > 0
+                        ? value.price * countQuantity[index]
+                        : 0}{" "}
+                      ₽
+                    </h1>
+                  </div>
+
+                  <div
+                    onClick={(e) => handleDelete(e, index)}
+                    className="cursor-pointer absolute right-0 border text-white bg-red-500  px-2  rounded-full"
                   >
-                    -
-                  </button>
-                  <button className="w-[40px] h-[40px] bg-gray-200 border border-[#cccccc]">
-                    {countQuantity[index]}
-                  </button>
-                  <button
-                    onClick={() => handleAdd(index)}
-                    className="w-[40px] h-[40px] bg-gray-200 border border-[#cccccc]"
-                  >
-                    +
-                  </button>
-                </div>
-
-                <div>
-                  <h1 className="text-center">
-                    {value.price * countQuantity[index]} ₽
-                  </h1>
-                </div>
-
-                <div
-                  onClick={(e) => handleDelete(e, index)}
-                  className="cursor-pointer absolute right-0 border text-white bg-red-500  px-2  rounded-full"
-                >
-                  x
-                </div>
-              </motion.div>
-            );
+                    x
+                  </div>
+                </motion.div>
+              );
+            }
           })}
         </div>
 
