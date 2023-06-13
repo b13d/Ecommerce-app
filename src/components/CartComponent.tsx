@@ -27,10 +27,7 @@ export default function CartComponent({
   let localProducts: string | null = "";
 
   if (typeof window !== "undefined") {
-    localProducts =
-      localStorage.getItem("products") !== null
-        ? localStorage.getItem("products")
-        : "";
+    localProducts = localStorage.getItem("products" || "");
   }
 
   useEffect(() => {
