@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
 import SaleUP from "@/components/SaleUP";
 import AboutQuality from "@/components/AboutQuality";
@@ -43,6 +43,8 @@ export default function PopularProducts() {
   const [listElementsBuy, setListElementsBuy] = useState<React.JSX.Element[]>(
     []
   );
+  const [currentKey, setCurrentKey] = useState<number>(0);
+  const [showCart, setShowCart] = useState(true);
 
   const variants = {
     initial: { opacity: 0, scale: 0.5 },
@@ -55,6 +57,10 @@ export default function PopularProducts() {
   };
 
   useEffect(() => {
+    // setInterval(() => {
+    //   console.log(listElementsBuy);
+    // }, 3000);
+
     const tempApi = apiElectronics;
 
     let tempArrUrl: IApi[] = [];
@@ -81,11 +87,13 @@ export default function PopularProducts() {
   }, [product]);
 
   function onTap(event: PointerEvent, info: any) {
+    setShowCart(true);
+
     let list = listElementsBuy;
 
     let el = listElementsBuy[0];
 
-    if (el !== undefined) console.log(el.props.animate.opacity);
+    if (el !== undefined) el.props.children.props.animate.opacity;
 
     let cart = document.querySelector(".cart");
 
@@ -95,35 +103,31 @@ export default function PopularProducts() {
       let posY = String(posElement.offsetTop) + "px";
       let posX = String(posElement.offsetLeft) + "px";
 
-      list.push(ElementBuy({ posX, posY }));
+      let indexElement = currentKey;
+
+      list.push(ElementBuy({ posX, posY, indexElement }));
+
+      setCurrentKey((value) => value + 1);
 
       setListElementsBuy(list);
 
-      // if (listElementsBuy.length > 10) {
-      //   setTimeout(() => {
-      //
+      if (listElementsBuy.length > 10) {
+        listElementsBuy.splice(0, 1);
 
-      //     setListElementsBuy(tempArr);
-      //   }, 3000);
-      // }
+        setListElementsBuy(listElementsBuy);
+      }
     }
 
     setShowElement(true);
   }
 
-  useEffect(() => {
-    setInterval(() => {
-        let tempArr = listElementsBuy.splice(1,listElementsBuy.length);
+  // console.log(listElementsBuy);
 
-        console.log(tempArr)
+  // console.log(tempArr);
 
-        setListElementsBuy(tempArr);
-    }, 5000);
-  }, []);
+  // setListElementsBuy(tempArr);
 
-
-
-  console.log(listElementsBuy);
+  console.log(showCart);
 
   return (
     <section className="max-w-[1300px] m-auto">
@@ -221,7 +225,11 @@ export default function PopularProducts() {
             );
           })}
       </motion.section>
-      {<CartComponent newProduct={product} />}
+      <CartComponent
+        newProduct={product}
+        showCart={showCart}
+        setShowCart={setShowCart}
+      />
       <SaleUP />
       <AboutQuality />
       <Comments />

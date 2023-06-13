@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
+import { motion } from "framer-motion";
 
 interface IApi {
   id: number;
@@ -14,19 +15,50 @@ interface IApi {
 
 interface IProps {
   newProduct: IApi | undefined;
+  showCart: boolean;
+  setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-// newProduct: IApi | undefined,
-// setProductsLast: React.Dispatch<React.SetStateAction<IApi | undefined>>
-
-export default function CartComponent({ newProduct }: IProps) {
+export default function CartComponent({
+  newProduct,
+  showCart,
+  setShowCart,
+}: IProps) {
   const [products, setProducts] = useState<IApi[]>([]);
+  const [mainTimer, setMainTimer] = useState<NodeJS.Timeout>();
+
+  let timer: NodeJS.Timeout;
+
+  useEffect(() => {
+    // setShowCart(true);
+
+    console.log(products);
+
+    if (products.length > 0) {
+      clearTimeout(timer);
+      // mb error
+      timer = setTimeout(() => {
+        setShowCart(false);
+        setMainTimer(undefined);
+      }, 3000);
+
+      if (mainTimer !== undefined) {
+        clearTimeout(timer);
+      } else {
+        setMainTimer(timer);
+      }
+    }
+
+    // clearTimeout(timer)
+
+    console.log(products);
+  }, [products]);
 
   useEffect(() => {
     let tempArrProducts: IApi[] = [...products];
 
     if (products !== null && newProduct !== undefined) {
-      tempArrProducts.push(newProduct); // мб тут ошибка
+      tempArrProducts.push(newProduct);
 
       setProducts(tempArrProducts);
     }
@@ -34,17 +66,17 @@ export default function CartComponent({ newProduct }: IProps) {
 
   return (
     <>
-      {(products.length > 0 || newProduct !== undefined) && (
-        <div className="cart fixed top-3 right-3 rounded-md border-[#353535] border-2  w-[300px] h-auto">
+      {(products.length > 0 || newProduct !== undefined) && showCart && (
+        <motion.div className="cart fixed top-[100px] right-3 rounded-md  w-[300px] h-[400px] overflow-y-scroll z-[1]">
           {products &&
             products.map((value, index) => {
               return (
                 <div
-                  className="flex items-center gap-3 px-4 py-2 bg-[#dbdbdb3d] justify-between"
+                  className="flex items-center gap-3 px-4 py-2 bg-[#ffffff] justify-between"
                   key={index}
                 >
                   <img
-                    className="w-[40px] h-[40px] rounded-2xl object-contain"
+                    className="w-[40px] h-[40px]  object-contain"
                     src={value.url}
                     alt=""
                   />
@@ -53,7 +85,7 @@ export default function CartComponent({ newProduct }: IProps) {
                 </div>
               );
             })}
-        </div>
+        </motion.div>
       )}
     </>
   );
