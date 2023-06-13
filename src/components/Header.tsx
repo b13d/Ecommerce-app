@@ -36,7 +36,7 @@ export default function Header() {
   };
 
   const variants = {
-    open: { opacity: 1, x: 0, y: 0 },
+    open: { opacity: 1, x: 0, y: 0, display: "block" },
     closed: { opacity: 0, x: "-100%", y: "-100%" },
   };
 
@@ -46,7 +46,7 @@ export default function Header() {
         <motion.div
           layout
           className="background-modal"
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0, display: "none" }}
           animate={modal ? "open" : "closed"}
           transition={{
             opacity: { ease: "easeOut" },

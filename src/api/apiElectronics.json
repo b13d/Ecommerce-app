@@ -6,7 +6,7 @@
     "price": 40000,
     "star": 0,
     "color": "black",
-    "category": "laptop"
+    "category": "laptops"
   },
   {
     "id": 2,
@@ -15,7 +15,7 @@
     "price": 21000,
     "star": 0,
     "color": "black",
-    "category": "smartphone"
+    "category": "smartphones"
   },
   {
     "id": 3,
@@ -24,6 +24,6 @@
     "price": 25000,
     "star": 0,
     "color": "black",
-    "category": "tv"
+    "category": "tvs"
   }
 ]

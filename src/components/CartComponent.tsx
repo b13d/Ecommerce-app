@@ -24,7 +24,9 @@ export default function CartComponent({
   showCart,
   setShowCart,
 }: IProps) {
-  const [products, setProducts] = useState<IApi[]>([]);
+  const localProducts = localStorage.getItem("products")
+
+  const [products, setProducts] = useState<IApi[]>(localProducts !== null ? JSON.parse(localProducts) : []);
   const [mainTimer, setMainTimer] = useState<number>(0);
   const [timer, setTimer] = useState<number[]>();
 
@@ -68,6 +70,8 @@ export default function CartComponent({
       tempArrProducts.push(newProduct);
 
       setProducts(tempArrProducts);
+
+      localStorage.setItem("products", JSON.stringify(tempArrProducts));
     }
   }, [newProduct]);
 

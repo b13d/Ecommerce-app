@@ -25,15 +25,17 @@ interface IApi {
 type TNamesLi = {
   Cameras: string;
   Laptops: string;
-  Tablets: string;
-  Mouse: string;
+  Smartphones: string;
+  TV: string;
+  All: string;
 };
 
 const NamesLi: TNamesLi = {
   Cameras: "cameras",
   Laptops: "laptops",
-  Tablets: "tablets",
-  Mouse: "mouse",
+  Smartphones: "smartphones",
+  TV: "tvs",
+  All: "all",
 };
 
 export default function PopularProducts() {
@@ -45,6 +47,15 @@ export default function PopularProducts() {
   );
   const [currentKey, setCurrentKey] = useState<number>(0);
   const [showCart, setShowCart] = useState(true);
+  const [currentCategory, setCurrentCategory] = useState("any");
+  const [listCategory, setListCategory] = useState([
+    NamesLi.Cameras,
+    NamesLi.Laptops,
+    NamesLi.Smartphones,
+    NamesLi.TV,
+    NamesLi.All,
+  ]);
+  const [selectedCategory, setSelectedCategory] = useState(4)
 
   const variants = {
     initial: { opacity: 0, scale: 0.5 },
@@ -74,8 +85,9 @@ export default function PopularProducts() {
     setImages(tempArrUrl);
   }, []);
 
-  const handleClick = (element: string) => {
-    console.log(element);
+  const handleClick = (element: string, index:number) => {
+    setSelectedCategory(index)
+    setCurrentCategory(element);
   };
 
   const handleClickBuy = async (newProduct: IApi) => {
@@ -141,30 +153,27 @@ export default function PopularProducts() {
 
         <div>
           <ul className="flex gap-3">
+            {listCategory.map((value, index) => {
+              let styleBorder = "" 
+              if (index === selectedCategory) styleBorder = "border-[#1B5A7D]"
+              return (
+                <li
+                  key={index}
+                  onClick={() => handleClick(value, index)}
+                  className={`cursor-pointer rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border ${styleBorder}`}
+                >
+                  {value}
+                </li>
+              );
+            })}
+            {/*
+
             <li
-              onClick={() => handleClick(NamesLi.Cameras)}
+              onClick={() => handleClick("any")}
               className="cursor-pointer rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border border-[#1B5A7D]"
             >
-              Cameras
-            </li>
-            <li
-              onClick={() => handleClick(NamesLi.Laptops)}
-              className="cursor-pointer rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border "
-            >
-              Laptops
-            </li>
-            <li
-              onClick={() => handleClick(NamesLi.Tablets)}
-              className="cursor-pointer rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border "
-            >
-              Tablets
-            </li>
-            <li
-              onClick={() => handleClick(NamesLi.Mouse)}
-              className="cursor-pointer rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border "
-            >
-              Mouse
-            </li>
+              All
+            </li> */}
           </ul>
         </div>
       </div>
@@ -172,57 +181,62 @@ export default function PopularProducts() {
       <motion.section className="grid grid-cols-4 gap-6">
         {images &&
           images.map((value, index) => {
-            return (
-              <motion.div
-                custom={value.id}
-                initial="initial"
-                variants={variants}
-                whileInView="visible"
-                viewport={{ once: true }}
-                key={index}
-                className="flex flex-col border rounded-xl p-4"
-              >
-                <div className="flex justify-center relative">
-                  <Image
-                    className="object-contain w-[235px] h-[200px] mb-3"
-                    src={value.url}
-                    width={180}
-                    height={180}
-                    alt="popular-item"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <p className="min-h-[70px] text-[#1B5A7D] font-semibold">
-                    {value.title}
-                  </p>
-                  <p className="font-bold text-[20px] ">
-                    <span className="text-orange-600">{value.price}</span>₽
-                  </p>
-                  <div className="flex gap-2">
-                    <button onClick={() => handleClickBuy(value)}>
-                      <motion.img
-                        onTap={onTap}
-                        className="w-[32px] h-[32px] border-[#313131] border-2 p-1 rounded-md hover:bg-gray-300"
-                        width={32}
-                        height={32}
-                        src="/images/shopping-cart.png"
-                        alt="buy-icon"
-                      />
-                    </button>
-                    <button>
-                      <Image
-                        className="w-[32px] h-[32px] border-[#313131] border-2 p-1 rounded-md hover:bg-gray-300"
-                        width={32}
-                        height={32}
-                        src="/images/heart.png"
-                        alt="buy-icon"
-                      />
-                    </button>
+            if (
+              value.category === currentCategory ||
+              currentCategory === "all"
+            ) {
+              return (
+                <motion.div
+                  custom={value.id}
+                  initial="initial"
+                  variants={variants}
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  key={index}
+                  className="flex flex-col border rounded-xl p-4"
+                >
+                  <div className="flex justify-center relative">
+                    <Image
+                      className="object-contain w-[235px] h-[200px] mb-3"
+                      src={value.url}
+                      width={180}
+                      height={180}
+                      alt="popular-item"
+                    />
                   </div>
-                </div>
-              </motion.div>
-            );
+
+                  <div className="flex flex-col gap-1">
+                    <p className="min-h-[70px] text-[#1B5A7D] font-semibold">
+                      {value.title}
+                    </p>
+                    <p className="font-bold text-[20px] ">
+                      <span className="text-orange-600">{value.price}</span>₽
+                    </p>
+                    <div className="flex gap-2">
+                      <button onClick={() => handleClickBuy(value)}>
+                        <motion.img
+                          onTap={onTap}
+                          className="w-[32px] h-[32px] border-[#313131] border-2 p-1 rounded-md hover:bg-gray-300"
+                          width={32}
+                          height={32}
+                          src="/images/shopping-cart.png"
+                          alt="buy-icon"
+                        />
+                      </button>
+                      <button>
+                        <Image
+                          className="w-[32px] h-[32px] border-[#313131] border-2 p-1 rounded-md hover:bg-gray-300"
+                          width={32}
+                          height={32}
+                          src="/images/heart.png"
+                          alt="buy-icon"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            }
           })}
       </motion.section>
       <CartComponent

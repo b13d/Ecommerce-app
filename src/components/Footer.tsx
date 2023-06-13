@@ -29,9 +29,9 @@ export default function Footer() {
             <img src="/images/logo-1.png" alt="" />
             <p className="border-b-2 border-[#999] pb-6">64 st james boulevard hoswick , ze2 7zj</p>
             <div className="flex gap-6">
-              <Link href=""><img src="/images/facebook.png" alt="icon-social" /></Link>
-              <Link href=""><img src="/images/google.png" alt="icon-social" /></Link>
-              <Link href=""><img src="/images/whatsapp.png" alt="icon-social" /></Link>
+              <Link href="#"><img src="/images/facebook.png" alt="icon-social" /></Link>
+              <Link href="#"><img src="/images/google.png" alt="icon-social" /></Link>
+              <Link href="#"><img src="/images/whatsapp.png" alt="icon-social" /></Link>
             </div>
           </div>
           <div className="flex flex-col gap-6 items-start">
