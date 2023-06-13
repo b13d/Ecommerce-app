@@ -8,14 +8,26 @@ import { motion, useScroll } from "framer-motion";
 import { once } from "events";
 
 export default function UseCart() {
-  let localProducts = localStorage.getItem("products");
+  let localProducts: string | null = "";
+
+  if (typeof window !== "undefined") {
+    localProducts =
+      localStorage.getItem("products") !== null
+        ? localStorage.getItem("products")
+        : "";
+  }
+
+  useEffect(() => {
+    if (localProducts !== null) {
+      setProducts(JSON.parse(localProducts));
+    }
+  }, []);
 
   const refInput = useRef<HTMLInputElement>(null);
   const [discount, setDiscount] = useState(0);
 
-  const [products, setProducts] = useState<IApi[]>(
-    localProducts !== null ? JSON.parse(localProducts) : []
-  );
+  const [products, setProducts] = useState<IApi[]>([]);
+  // localProducts !== null ? JSON.parse(localProducts) : []
   const handleDelete = (
     element: React.MouseEvent<HTMLDivElement, MouseEvent>,
     currentIndex: number

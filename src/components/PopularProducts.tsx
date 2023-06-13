@@ -68,9 +68,6 @@ export default function PopularProducts() {
   };
 
   useEffect(() => {
-    // setInterval(() => {
-    //   console.log(listElementsBuy);
-    // }, 3000);
 
     const tempApi = apiElectronics;
 

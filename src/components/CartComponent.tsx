@@ -24,16 +24,29 @@ export default function CartComponent({
   showCart,
   setShowCart,
 }: IProps) {
-  const localProducts = localStorage.getItem("products")
+  let localProducts: string | null = "";
 
-  const [products, setProducts] = useState<IApi[]>(localProducts !== null ? JSON.parse(localProducts) : []);
+  if (typeof window !== "undefined") {
+    localProducts =
+      localStorage.getItem("products") !== null
+        ? localStorage.getItem("products")
+        : "";
+  }
+
+  useEffect(() => {
+    if (localProducts !== null) {
+      setProducts(JSON.parse(localProducts));
+    }
+  }, []);
+
+  const [products, setProducts] = useState<IApi[]>([]);
   const [mainTimer, setMainTimer] = useState<number>(0);
   const [timer, setTimer] = useState<number[]>();
 
   useEffect(() => {
     // setShowCart(true);
 
-    console.log(mainTimer);
+    // console.log(mainTimer);
 
     if (products.length > 0) {
       // mb error
@@ -49,8 +62,8 @@ export default function CartComponent({
 
       setTimer(list);
 
-      console.log(timer);
-      console.log(mainTimer);
+      // console.log(timer);
+      // console.log(mainTimer);
 
       if (mainTimer !== undefined && timer !== undefined) {
         window.clearTimeout(timer[timer.length - 2]);
@@ -60,7 +73,7 @@ export default function CartComponent({
 
     // clearTimeout(timer)
 
-    console.log(products);
+    // console.log(products);
   }, [products]);
 
   useEffect(() => {
