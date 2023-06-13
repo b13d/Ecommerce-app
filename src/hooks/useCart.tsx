@@ -1,7 +1,20 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { IApi } from "@/components/CartComponent";
 
 export default function UseCart() {
+  let localProducts = localStorage.getItem("products");
+
+  const [products, setProducts] = useState<IApi[]>(
+    localProducts !== null ? JSON.parse(localProducts) : []
+  );
+
+  const handleDelete = (
+    element: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {};
+
   return (
     <section className="max-w-[1300px] m-auto flex gap-2 items-start justify-between">
       <div className="">
@@ -12,95 +25,53 @@ export default function UseCart() {
             <h1 className="text-center">Quantity</h1>
             <h1 className="text-center">Subtotal</h1>
           </div>
-          <div className="grid gridCol grid-cols-4 items-center px-[30px] py-[15px] relative border-b-2 border-gray-300">
-            <div className="flex gap-2 items-center">
-              <Image
-                width={135}
-                height={120}
-                src="/images/currentProduct.png"
-                alt="img"
-              />
+          {products.map((value, index) => {
+            return (
+              <div
+                key={index}
+                className="grid gridCol grid-cols-4 items-center px-[30px] py-[15px] relative border-b-2 border-gray-300"
+              >
+                <div className="flex gap-2 items-center">
+                  <Image className="max-h-[100px]" width={135} height={120} src={value.url} alt="img" />
 
-              <div>
-                <h1>Play game</h1>
-                <p>Color: Green</p>
-                <p>Size: 30</p>
+                  <div>
+                    <p className="">{value.title}</p>
+                    <p>Color: {value.color}</p>
+                  </div>
+                </div>
+
+                <div>
+                  <h1 className="text-center">{value.price}₽</h1>
+                </div>
+
+                <div className="flex justify-center items-center">
+                  <button className="bg-gray-200 border border-[#cccccc] px-4">
+                    -
+                  </button>
+                  <button className="bg-gray-200 border border-[#cccccc] px-4">
+                    1
+                  </button>
+                  <button className="bg-gray-200 border border-[#cccccc] px-4">
+                    +
+                  </button>
+                </div>
+
+                <div>
+                  <h1 className="text-center">{value.price}₽</h1>
+                </div>
+
+                <div
+                  onClick={(e) => handleDelete(e)}
+                  className="cursor-pointer absolute right-0 border text-white bg-red-500  px-2  rounded-full"
+                >
+                  x
+                </div>
               </div>
-            </div>
-
-            <div>
-              <h1 className="text-center">$ 11,70</h1>
-            </div>
-
-            <div className="flex justify-center items-center">
-              <button className="bg-gray-200 border border-[#cccccc] px-4">
-                -
-              </button>
-              <button className="bg-gray-200 border border-[#cccccc] px-4">
-                1
-              </button>
-              <button className="bg-gray-200 border border-[#cccccc] px-4">
-                +
-              </button>
-            </div>
-
-            <div>
-              <h1 className="text-center">$ 11,70</h1>
-            </div>
-
-            <div
-              className="absolute right-0 border  px-2  rounded-full"
-              style={{ borderColor: "gray" }}
-            >
-              x
-            </div>
-          </div>
-          <div className="grid gridCol grid-cols-4 items-center px-[30px] py-[15px] relative border-b-2 border-gray-300">
-            <div className="flex gap-2 items-center">
-              <Image
-                width={135}
-                height={120}
-                src="/images/currentProduct.png"
-                alt="img"
-              />
-
-              <div>
-                <h1>Play game</h1>
-                <p>Color: Green</p>
-                <p>Size: 30</p>
-              </div>
-            </div>
-
-            <div>
-              <h1 className="text-center">$ 11,70</h1>
-            </div>
-
-            <div className="flex justify-center items-center">
-              <button className="bg-gray-200 border border-[#cccccc] px-4">
-                -
-              </button>
-              <button className="bg-gray-200 border border-[#cccccc] px-4">
-                1
-              </button>
-              <button className="bg-gray-200 border border-[#cccccc] px-4">
-                +
-              </button>
-            </div>
-
-            <div>
-              <h1 className="text-center">$ 11,70</h1>
-            </div>
-
-            <div
-              className="absolute right-0 border  px-2  rounded-full"
-              style={{ borderColor: "gray" }}
-            >
-              x
-            </div>
-          </div>
+            );
+          })}
         </div>
-        
-        <div className="flex gap-3">
+
+        <div className="flex gap-3 mb-6">
           <button className="font-semibold py-3 px-9 w-[60%] bg-[#EDA415] m-auto text-white rounded-3xl">
             Continue shopping
           </button>

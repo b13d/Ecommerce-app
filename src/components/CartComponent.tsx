@@ -3,7 +3,7 @@
 import React, { useState, useEffect, createContext } from "react";
 import { motion } from "framer-motion";
 
-interface IApi {
+export interface IApi {
   id: number;
   url: string;
   title: string;

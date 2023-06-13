@@ -91,20 +91,20 @@ export default function Header() {
             />
           </div>
           <div className="w-[200px] flex items-center justify-end  gap-4">
-            <Image
+            {/* <Image
               className="cursor-pointer"
               width={25}
               height={25}
               src="/images/search.png"
               alt="icon-find"
-            />
-            <Image
+            /> */}
+            {/* <Image
               className="cursor-pointer"
               width={25}
               height={25}
               src="/images/user.png"
               alt="icon-user"
-            />
+            /> */}
             <Link href="/products/cart">
               <Image
                 className="cursor-pointer"

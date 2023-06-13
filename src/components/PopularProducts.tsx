@@ -47,7 +47,7 @@ export default function PopularProducts() {
   );
   const [currentKey, setCurrentKey] = useState<number>(0);
   const [showCart, setShowCart] = useState(true);
-  const [currentCategory, setCurrentCategory] = useState("any");
+  const [currentCategory, setCurrentCategory] = useState("all");
   const [listCategory, setListCategory] = useState([
     NamesLi.Cameras,
     NamesLi.Laptops,
