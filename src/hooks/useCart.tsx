@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { IApi } from "@/components/CartComponent";
 import { motion, useScroll } from "framer-motion";
-import { once } from "events";
 
 export default function UseCart() {
   let localProducts: string | null = "";
@@ -61,7 +60,7 @@ export default function UseCart() {
   }, []);
 
   const { scrollYProgress, scrollY } = useScroll();
-  let sum = 0;
+  let sum: number = 0;
 
   const handleSubtract = (currentIndex: number) => {
     let tempArr: number[] = [];
