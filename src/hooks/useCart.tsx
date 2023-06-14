@@ -117,7 +117,6 @@ export default function UseCart() {
     } else if (widthScreen < 1000 && currentWidthScreen > 1000) {
       setCurrentWidthScreen(widthScreen);
     }
-    console.log(widthScreen);
   };
 
   return (

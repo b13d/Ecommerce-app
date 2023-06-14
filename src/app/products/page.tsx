@@ -12,7 +12,6 @@ export default function products() {
       <div className="wrapper">
         <Header />
         <Products />
-        <SaleUP />
       </div>
       <Footer />
     </>
