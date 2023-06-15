@@ -31,6 +31,7 @@ export default function Products() {
     },
   ]);
 
+  const [rangeValue, setRangeValue] = useState<string>("0");
   const [productsOnScreen, setProductsOnScreen] = useState<IApi[]>([]);
 
   // checked categories
@@ -103,6 +104,12 @@ export default function Products() {
     }
   };
 
+  const handleRange = (element: React.ChangeEvent<HTMLInputElement>) => {
+    let tempValue = Number(element.target.value) * 500;
+
+    setRangeValue(tempValue.toString());
+  };
+
   return (
     <div className="max-w-[1300px] m-auto">
       <div className="flex gap-2 mb-4">
@@ -140,7 +147,29 @@ export default function Products() {
               })}
             </ul>
           </div>
-          </section>
+          <div className="border-b-2 border-gray pb-4 mb-4">
+            <div className="flex justify-between pb-3">
+              <h1 className="text-[#316887] font-semibold">Price</h1>
+              <h1 className="cursor-pointer text-[#888585]">Reset</h1>
+            </div>
+            <ul className="flex gap-1">
+              <p>0</p>
+              <input
+                className="w-full"
+                type="range"
+                name="range"
+                id="range"
+                min="0"
+                max="100"
+                step="10"
+                // value={rangeValue}
+                onChange={(e) => handleRange(e)}
+              />
+              <p>{">"}50000₽</p>
+            </ul>
+            <p>0 - {rangeValue === "50000" ? ">50000" : rangeValue} ₽</p>
+          </div>
+        </section>
         <section className="RightProducts grid grid-cols-3 gap-3 w-[100%] grid-rows-[313px]">
           {productsOnScreen.map((value: IApi, index) => {
             return (

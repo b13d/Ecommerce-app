@@ -106,8 +106,8 @@ export default function UseCart() {
     setCountQuantity(tempArr);
   };
 
-  let widthScreen: number =
-    document.getElementsByTagName("body")[0].clientWidth;
+  let widthScreen: number = 0;
+  // document.getElementsByTagName("body")[0].clientWidth;
 
   window.onresize = function () {
     widthScreen = document.getElementsByTagName("body")[0].clientWidth;
