@@ -22,13 +22,7 @@ export default function RelatedProduct() {
         <div className="flex flex-col gap-4">
           <p className="text-[#1B5A7D] font-semibold">Photik</p>
           <p className="font-bold">$11,70</p>
-          <div className="flex gap-2">
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-          </div>
+
         </div>
       </div>
       <div className="flex flex-col border rounded-xl p-4">
@@ -49,13 +43,7 @@ export default function RelatedProduct() {
         <div className="flex flex-col gap-4">
           <p className="text-[#1B5A7D] font-semibold">Photik</p>
           <p className="font-bold">$11,70</p>
-          <div className="flex gap-2">
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-          </div>
+
         </div>
       </div>
       <div className="flex flex-col border rounded-xl p-4">

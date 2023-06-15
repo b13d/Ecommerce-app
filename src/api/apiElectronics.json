@@ -3,27 +3,36 @@
     "id": 1,
     "url": "/images/electronics/laptop-1.png",
     "title": "Ноутбук Huawei MateBook D 15 BOD-WDI9, 15.6",
-    "price": 40000,
+    "price": 39999,
     "star": 0,
-    "color": "black",
+    "color": ["black", "bg-slate-100"],
     "category": "laptops"
   },
   {
     "id": 2,
     "url": "/images/electronics/smartphone-1.png",
     "title": "Смартфон Huawei nova 10 SE 8/128Gb, серебристый",
-    "price": 21000,
+    "price": 20999,
     "star": 0,
-    "color": "black",
+    "color": ["black", "bg-slate-100"],
     "category": "smartphones"
   },
   {
     "id": 3,
     "url": "/images/electronics/tv-1.png",
     "title": "43 Телевизор Xiaomi Mi TV A2, 4K Ultra HD, черный, СМАРТ ТВ, Android",
-    "price": 25000,
+    "price": 24999,
     "star": 0,
-    "color": "black",
+    "color": ["black"],
     "category": "tvs"
+  },
+  {
+    "id": 4,
+    "url": "/images/electronics/smartphone-2.png",
+    "title": "6.1 Смартфон Apple iPhone 13 128 ГБ черный",
+    "price": 19999,
+    "star": 0,
+    "color": ["black"],
+    "category": "smartphones"
   }
 ]

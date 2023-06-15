@@ -5,10 +5,17 @@ import Image from "next/image";
 import apiElectronics from "../api/apiElectronics.json";
 import { count } from "console";
 import { IApi } from "./CartComponent";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ICategories {
   name: string;
   checked: boolean;
+}
+
+interface ILastELemet {
+  element: React.ChangeEvent<HTMLInputElement> | undefined;
+  nameElement: string;
 }
 
 export default function Products() {
@@ -31,38 +38,55 @@ export default function Products() {
     },
   ]);
 
-  const [rangeValue, setRangeValue] = useState<string>("0");
+  const [lastChangeElement, setLastChangeElement] = useState<ILastELemet>();
+  const [rangeValue, setRangeValue] = useState<string>("25000");
   const [productsOnScreen, setProductsOnScreen] = useState<IApi[]>([]);
 
   // checked categories
 
   const handleChange = (
-    element: React.ChangeEvent<HTMLInputElement>,
-    nameElement: string
+    element: React.ChangeEvent<HTMLInputElement> | undefined,
+    nameElement: string,
+    currentRangeValue?: number
   ) => {
+    let tempLastElement: ILastELemet = {
+      element,
+      nameElement,
+    };
+
     let temp = apiElectronics.filter(
       (value) => value.category === nameElement.toLowerCase()
     );
 
-    if (element.target.checked) {
+    if (currentRangeValue === undefined) currentRangeValue = Number(rangeValue);
+
+    if (element !== undefined ? element.target.checked : false) {
       let tempArr: IApi[] = [];
 
+      setLastChangeElement(tempLastElement);
       if (nameElement === "All categories") {
         listCategories.map((value, index) => {
           index === 0 ? (value.checked = true) : (value.checked = false);
         });
 
         apiElectronics.map((value) => {
-          tempArr.push(value);
+          if (
+            currentRangeValue !== undefined
+              ? value.price <= currentRangeValue
+              : true
+          )
+            tempArr.push(value);
         });
       } else {
-        tempArr = productsOnScreen;
+        // tempArr = productsOnScreen;
+        tempArr = [];
 
         if (listCategories[0].checked) {
           listCategories[0].checked = false;
 
           tempArr = [];
         }
+
         let tempCategory = listCategories.filter(
           (value) => value.name === nameElement
         );
@@ -71,8 +95,20 @@ export default function Products() {
           value.checked = true;
         });
 
-        temp.map((value: IApi) => {
-          tempArr.push(value);
+        // добавление продуктов у которых в listCategories стоит true
+
+        listCategories.forEach((listCategoriesValue) => {
+          apiElectronics.filter((apiElectronicsValue) => {
+            if (
+              apiElectronicsValue.category ===
+                listCategoriesValue.name.toLowerCase() &&
+              listCategoriesValue.checked &&
+              currentRangeValue !== undefined &&
+              apiElectronicsValue.price < currentRangeValue
+            ) {
+              tempArr.push(apiElectronicsValue);
+            }
+          });
         });
       }
 
@@ -107,8 +143,17 @@ export default function Products() {
   const handleRange = (element: React.ChangeEvent<HTMLInputElement>) => {
     let tempValue = Number(element.target.value) * 500;
 
+    if (lastChangeElement !== undefined)
+      handleChange(
+        lastChangeElement.element,
+        lastChangeElement.nameElement,
+        tempValue
+      );
+
     setRangeValue(tempValue.toString());
   };
+
+  console.log(listCategories);
 
   return (
     <div className="max-w-[1300px] m-auto">
@@ -162,7 +207,6 @@ export default function Products() {
                 min="0"
                 max="100"
                 step="10"
-                // value={rangeValue}
                 onChange={(e) => handleRange(e)}
               />
               <p>{">"}50000₽</p>
@@ -173,29 +217,34 @@ export default function Products() {
         <section className="RightProducts grid grid-cols-3 gap-3 w-[100%] grid-rows-[313px]">
           {productsOnScreen.map((value: IApi, index) => {
             return (
-              <div
-                key={index}
-                className="flex flex-col border rounded-xl p-4 pb-8 max-h-[313px]"
-              >
-                <div className="h-[220px] flex flex-col justify-center relative">
-                  {/* <img
-                    className="absolute right-0"
-                    src="/images/favourites.png"
-                    alt="favourites"
-                  /> */}
-                  <p className="text-right font-bold">{value.price} ₽</p>
+              <Link key={index} href={`/products/${value.id}`}>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{
+                    duration: 0.5,
+                    type: "spring",
+                    stiffness: 10,
+                  }}
+                  className="flex flex-col border rounded-xl p-4 pb-8 max-h-[313px]"
+                >
+                  <div className="h-[220px] flex flex-col justify-center relative">
+                    <p className="text-right font-bold">{value.price} ₽</p>
 
-                  <img
-                    className="mb-4 m-auto object-scale-down w-[200px] h-[180px]"
-                    src={value.url}
-                    alt="popular-item"
-                  />
-                </div>
+                    <img
+                      className="mb-4 m-auto object-scale-down w-[200px] h-[180px]"
+                      src={value.url}
+                      alt="popular-item"
+                    />
+                  </div>
 
-                <div className="flex flex-col gap-4">
-                  <p className="text-[#1B5A7D] font-semibold">{value.title}</p>
-                </div>
-              </div>
+                  <div className="flex flex-col gap-4">
+                    <p className="text-[#1B5A7D] font-semibold">
+                      {value.title}
+                    </p>
+                  </div>
+                </motion.div>
+              </Link>
             );
           })}
         </section>

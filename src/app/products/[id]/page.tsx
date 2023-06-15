@@ -1,8 +1,12 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import RelatedProduct from "@/components/RelatedProduct";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import apiElectronics from "@/api/apiElectronics.json";
+import { IApi } from "@/components/CartComponent";
 
 interface IUser {
   id: number;
@@ -11,18 +15,23 @@ interface IUser {
 }
 
 export default async function Product({ params }: { params: { id: string } }) {
-  const data: IUser = await getData(params.id);
+  const data: IApi = await getData(params.id);
 
-  // console.log(data);
+  console.log(data);
+
+  const handleChangeColor = () => {};
 
   return (
     <>
       <section className="max-w-[1300px] m-auto">
         <Header />
         <section className="flex gap-10 mb-[75px]">
-          <div className="flex flex-col gap-4">
+          <div className="flex justify-center items-center m-auto flex-col gap-4">
             <div>
-              <img src="/images/currentProduct.png" alt="current-product" />
+              <img
+                src={data !== undefined ? data.url : ""}
+                alt="current-product"
+              />
             </div>
 
             <div className="flex  justify-between">
@@ -45,17 +54,11 @@ export default async function Product({ params }: { params: { id: string } }) {
           <div className="w-[40%]">
             <div className="border-b-2 border-[#BDBDBD] pb-4 mb-4 flex flex-col gap-4">
               <h1 className="text-[#1B5A7D] text-[26px] font-medium">
-                Play game
+                {data !== undefined ? data.title : ""}
               </h1>
-              <p>$11,70</p>
-              <div className="flex gap-1 items-center">
-                <img src="/images/star-gold.png" alt="star" />
-                <img src="/images/star-gold.png" alt="star" />
-                <img src="/images/star-gold.png" alt="star" />
-                <img src="/images/star-gold.png" alt="star" />
-                <img src="/images/star-gold.png" alt="star" />
-                <span>No reviews</span>
-              </div>
+              <p className="text-[28px]">
+                {data !== undefined ? data.price : 0}₽
+              </p>
               <h1>
                 Availability:{" "}
                 <span className="text-[#30BD57] font-bold">✓ In stack</span>
@@ -66,8 +69,16 @@ export default async function Product({ params }: { params: { id: string } }) {
             <div className="flex flex-col gap-8 border-b-2 border-[#BDBDBD] pb-4 mb-4">
               <div className="flex gap-2 items-center">
                 <span>Color: </span>
-                <span className="w-[15px] h-[15px]  border bg-yellow-300 rounded-md block"></span>
-                <span className="w-[15px] h-[15px]  border bg-gray-800 rounded-md block"></span>
+                {data !== undefined
+                  ? data.color.map((value, index) => {
+                      return (
+                        <span
+                          key={index}
+                          className={`w-[15px] h-[15px] border bg-${value} rounded-md block`}
+                        ></span>
+                      );
+                    })
+                  : ""}
               </div>
               <div className="flex gap-2 items-center">
                 <span>Size: </span>
@@ -147,12 +158,12 @@ export default async function Product({ params }: { params: { id: string } }) {
   );
 }
 
-async function getData(id: string) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+async function getData(currentId: string) {
+  const res = await apiElectronics.filter((value) => {
+    if (value.id === Number(currentId)) return value;
+  });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
+  console.log(res);
 
-  return res.json();
+  return res[0];
 }

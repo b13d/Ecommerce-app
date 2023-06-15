@@ -11,16 +11,7 @@ import apiElectronics from "../api/apiElectronics.json";
 import { motion, useAnimate } from "framer-motion";
 import CartComponent from "./CartComponent";
 import ElementBuy from "./ElementBuy";
-
-interface IApi {
-  id: number;
-  url: string;
-  title: string;
-  price: number;
-  star: number;
-  color: string;
-  category: string;
-}
+import { IApi } from "./CartComponent";
 
 type TNamesLi = {
   Cameras: string;
@@ -72,11 +63,9 @@ export default function PopularProducts() {
 
     let tempArrUrl: IApi[] = [];
 
-    for (let i = 0; i < 4; i++) {
-      tempApi.map((value) => {
-        tempArrUrl.push(value);
-      });
-    }
+    tempApi.map((value) => {
+      tempArrUrl.push(value);
+    });
 
     setImages(tempArrUrl);
   }, []);
@@ -129,14 +118,6 @@ export default function PopularProducts() {
     setShowElement(true);
   }
 
-  // console.log(listElementsBuy);
-
-  // console.log(tempArr);
-
-  // setListElementsBuy(tempArr);
-
-  console.log(showCart);
-
   return (
     <section className="max-w-[1300px] m-auto">
       {listElementsBuy.map((value) => {
@@ -162,14 +143,6 @@ export default function PopularProducts() {
                 </li>
               );
             })}
-            {/*
-
-            <li
-              onClick={() => handleClick("any")}
-              className="cursor-pointer rounded-2xl py-[7px] px-[20px] text-[#1B5A7D] border border-[#1B5A7D]"
-            >
-              All
-            </li> */}
           </ul>
         </div>
       </div>

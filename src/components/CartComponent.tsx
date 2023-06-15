@@ -9,7 +9,7 @@ export interface IApi {
   title: string;
   price: number;
   star: number;
-  color: string;
+  color: string[];
   category: string;
 }
 
