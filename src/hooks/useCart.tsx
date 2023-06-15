@@ -150,7 +150,7 @@ export default function UseCart() {
                       className="max-lg:w-[100px] max-h-[100px]"
                       width={135}
                       height={120}
-                      src={value.url}
+                      src={value.url[0]}
                       alt="img"
                     />
 

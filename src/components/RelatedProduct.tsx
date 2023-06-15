@@ -1,105 +1,48 @@
 import React from "react";
 import Image from "next/image";
+import ApiElectronics from "@/api/apiElectronics.json";
+import { IApi } from "./CartComponent";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
-export default function RelatedProduct() {
+interface IPropsProduct {
+  currentIndex: number;
+}
+
+export default function RelatedProduct({ currentIndex }: IPropsProduct) {
+  let listApi: IApi[] = ApiElectronics;
+
   return (
     <section className="grid grid-cols-4 gap-4 mb-[150px]">
-      <div className="flex flex-col border rounded-xl p-4">
-        <div className="flex justify-center relative">
-          <img
-            className="absolute right-0"
-            src="/images/favourites.png"
-            alt="favourites"
-          />
-          <img
-            src="/images/popular-product-1.png"
-            width={180}
-            height={180}
-            alt="popular-item"
-          />
-        </div>
+      {listApi.map((value) => {
+        if (value.id !== currentIndex) {
+          return (
+            <Link href={`products/${value.id}`} key={value.id}>
+              <div className="flex flex-col relative gap-5 border rounded-xl p-4">
+                <motion.img
+                  className="w-[32px] h-[32px] ml-auto border-[#313131] border-2 p-1 rounded-md hover:bg-gray-300"
+                  width={32}
+                  height={32}
+                  src="/images/heart.png"
+                  alt="heart-icon"
+                />
+                <div className="flex justify-center relative">
+                  <img
+                    className="object-scale-down h-[200px]"
+                    src={value.url[0]}
+                    alt="popular-item"
+                  />
+                </div>
 
-        <div className="flex flex-col gap-4">
-          <p className="text-[#1B5A7D] font-semibold">Photik</p>
-          <p className="font-bold">$11,70</p>
-
-        </div>
-      </div>
-      <div className="flex flex-col border rounded-xl p-4">
-        <div className="flex justify-center relative">
-          <img
-            className="absolute right-0"
-            src="/images/favourites.png"
-            alt="favourites"
-          />
-          <img
-            src="/images/popular-product-1.png"
-            width={180}
-            height={180}
-            alt="popular-item"
-          />
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <p className="text-[#1B5A7D] font-semibold">Photik</p>
-          <p className="font-bold">$11,70</p>
-
-        </div>
-      </div>
-      <div className="flex flex-col border rounded-xl p-4">
-        <div className="flex justify-center relative">
-          <img
-            className="absolute right-0"
-            src="/images/favourites.png"
-            alt="favourites"
-          />
-          <img
-            src="/images/popular-product-1.png"
-            width={180}
-            height={180}
-            alt="popular-item"
-          />
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <p className="text-[#1B5A7D] font-semibold">Photik</p>
-          <p className="font-bold">$11,70</p>
-          <div className="flex gap-2">
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-col border rounded-xl p-4">
-        <div className="flex justify-center relative">
-          <img
-            className="absolute right-0"
-            src="/images/favourites.png"
-            alt="favourites"
-          />
-          <img
-            src="/images/popular-product-1.png"
-            width={180}
-            height={180}
-            alt="popular-item"
-          />
-        </div>
-
-        <div className="flex flex-col gap-4">
-          <p className="text-[#1B5A7D] font-semibold">Photik</p>
-          <p className="font-bold">$11,70</p>
-          <div className="flex gap-2">
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-            <img src="/images/star.png" alt="star" />
-          </div>
-        </div>
-      </div>
+                <div className="flex h-[130px] flex-col gap-4">
+                  <p className="text-[#1B5A7D] font-semibold">{value.title}</p>
+                  <p className="font-bold mt-auto">{value.price}₽</p>
+                </div>
+              </div>
+            </Link>
+          );
+        }
+      })}
     </section>
   );
 }

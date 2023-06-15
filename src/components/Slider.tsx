@@ -54,7 +54,7 @@ export default function Slider() {
 
     for (let i = 0; i < 4; i++) {
       tempApi.map((value) => {
-        tempArrUrl.push(value.url);
+        tempArrUrl.push(value.url[0]);
       });
     }
 

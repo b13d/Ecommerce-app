@@ -157,6 +157,15 @@ export default function Products() {
 
   return (
     <div className="max-w-[1300px] m-auto">
+          {/* <div className="text-right mb-5">
+            <Link
+              className="border py-3 px-5  text-center hover:bg-black hover:text-white duration-300"
+              href="/"
+            >
+              Вернуться
+            </Link>
+          </div> */}
+
       <div className="flex gap-2 mb-4">
         <section className="leftProducts w-[320px] ">
           <div className="border-b-2 border-gray pb-4 mb-4">
@@ -233,7 +242,7 @@ export default function Products() {
 
                     <img
                       className="mb-4 m-auto object-scale-down w-[200px] h-[180px]"
-                      src={value.url}
+                      src={value.url[0]}
                       alt="popular-item"
                     />
                   </div>

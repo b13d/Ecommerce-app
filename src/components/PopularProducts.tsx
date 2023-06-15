@@ -167,7 +167,7 @@ export default function PopularProducts() {
                   <div className="flex justify-center relative">
                     <Image
                       className="object-contain w-[235px] h-[200px] mb-3"
-                      src={value.url}
+                      src={value.url[0]}
                       width={180}
                       height={180}
                       alt="popular-item"
@@ -198,7 +198,7 @@ export default function PopularProducts() {
                           width={32}
                           height={32}
                           src="/images/heart.png"
-                          alt="buy-icon"
+                          alt="heart-icon"
                         />
                       </button>
                     </div>

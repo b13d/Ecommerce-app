@@ -65,7 +65,7 @@ export default function HeaderMainInfo() {
                 <div className="flex flex-col gap-6 items-center">
                   <img
                     className="max-sm:w-[50%] max-sm:h-[50%] sm:w-[350px] object-scale-down sm:h-[250px] ease-out"
-                    src={product.url}
+                    src={product.url[0]}
                     alt={product.title}
                   />
 

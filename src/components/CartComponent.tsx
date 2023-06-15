@@ -5,12 +5,14 @@ import { motion } from "framer-motion";
 
 export interface IApi {
   id: number;
-  url: string;
+  url: string[];
   title: string;
   price: number;
   star: number;
   color: string[];
   category: string;
+  gigabytes?: number[];
+  description: string;
 }
 
 interface IProps {
@@ -98,7 +100,7 @@ export default function CartComponent({
                 >
                   <img
                     className="w-[40px] h-[40px]  object-contain"
-                    src={value.url}
+                    src={value.url[0]}
                     alt=""
                   />
                   <p className="text-[14px]">{value.title}</p>

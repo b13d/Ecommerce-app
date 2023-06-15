@@ -122,7 +122,7 @@ export default function Header() {
           </div>
         </motion.div>
         {currentUrl !== "" && (
-          <div className="py-[25px] mb-[25px]">
+          <div className="py-[15px] mb-[15px]">
             <p>{`Home > ${currentUrl.split("/")[1]} ${
               currentUrl.split("/").length > 2
                 ? `> ${currentUrl.split("/")[2]}`
