@@ -18,7 +18,8 @@ export default function UseCart() {
 
   const [products, setProducts] = useState<IApi[]>([]);
   const [currentWidthScreen, setCurrentWidthScreen] = useState<number>(
-    document.getElementsByTagName("body")[0].clientWidth
+    0
+    // document.getElementsByTagName("body")[0].clientWidth
   );
 
   useEffect(() => {
@@ -109,7 +110,7 @@ export default function UseCart() {
   let widthScreen: number = 0;
   // document.getElementsByTagName("body")[0].clientWidth;
 
-  window.onresize = function () {
+  useEffect(() => {
     widthScreen = document.getElementsByTagName("body")[0].clientWidth;
 
     if (widthScreen > 1000 && currentWidthScreen < 1000) {
@@ -117,7 +118,7 @@ export default function UseCart() {
     } else if (widthScreen < 1000 && currentWidthScreen > 1000) {
       setCurrentWidthScreen(widthScreen);
     }
-  };
+  }, [scrollY]);
 
   return (
     <section className="max-w-[1300px] m-auto flex max-sm:flex-col gap-2 items-start justify-between">
