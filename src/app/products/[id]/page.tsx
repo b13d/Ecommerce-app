@@ -17,6 +17,8 @@ interface IUser {
 
 export default function Product({ params }: { params: { id: string } }) {
   const [data, setData] = useState<IApi>();
+  const [currentGigabyte, setCurrentGigabute] = useState(0);
+  const [indexButton, setIndexButton] = useState(0);
 
   useEffect(() => {
     const handleGetData = async () => {
@@ -33,6 +35,11 @@ export default function Product({ params }: { params: { id: string } }) {
   console.log(data);
   if (data !== undefined) {
     let description = data.description.split(";");
+
+    const handleChangeGigabytes = (index: number) => {
+      setIndexButton(index);
+      setCurrentGigabute(index !== 0 ? 0.5 + (index + 1) * 0.5 : 1);
+    };
 
     return (
       <>
@@ -76,7 +83,11 @@ export default function Product({ params }: { params: { id: string } }) {
                 </h1>
                 <p className="text-[24px]">
                   <span className="text-[28px] font-semibold">
-                    {data !== undefined ? data.price : 0}
+                    {data !== undefined
+                      ? currentGigabyte !== 0
+                        ? data.price * currentGigabyte
+                        : data.price
+                      : 0}
                   </span>
                   ₽
                 </p>
@@ -89,7 +100,7 @@ export default function Product({ params }: { params: { id: string } }) {
               </div>
 
               <div className="flex flex-col gap-8 border-b-2 border-[#BDBDBD] pb-4 mb-4">
-                <div className="flex gap-2 items-center">
+                {/* <div className="flex gap-2 items-center">
                   <span>Color: </span>
                   {data !== undefined
                     ? data.color.map((value, index) => {
@@ -102,40 +113,53 @@ export default function Product({ params }: { params: { id: string } }) {
                         );
                       })
                     : ""}
-                </div>
+                </div> */}
                 {data.gigabytes && (
                   <div className="flex gap-2 items-center">
                     <span>gigabytes: </span>
                     {data.gigabytes?.map((value, index) => {
+                      let styleButton = "";
+
+                      if (indexButton === index) {
+                        styleButton =
+                          "bg-white hover:bg-black hover:text-white border border-black  duration-300 text-black py-2 px-4";
+                      } else {
+                        styleButton =
+                          "bg-[#353535] hover:bg-[#e7e7e7] hover:text-black  duration-300 text-white py-2 px-4";
+                      }
+
                       return (
-                        <button key={index} className="bg-[#353535] hover:bg-[#e7e7e7] hover:text-black  duration-300 text-white py-2 px-4">
+                        <button
+                          onClick={() => handleChangeGigabytes(index)}
+                          key={index}
+                          className={styleButton}
+                        >
                           {value}
                         </button>
                       );
                     })}
                   </div>
                 )}
-
-                <div className="flex gap-5 items-center ">
-                  <button className="bg-[#000000] py-3 w-[150px] rounded-sm text-[white] hover:bg-white hover:border hover:border-[#1d1d1d] duration-300 hover:text-black">
-                    Add to cart
-                  </button>
-                  <button className="bg-[#000000] py-3 w-[150px] rounded-sm text-[white] hover:bg-white hover:border hover:border-[#1d1d1d] duration-300 hover:text-black">
-                    Buy it now
-                  </button>
-                  <div className="bg-gray-300 rounded-full p-4">
-                    <img
-                      className="w-[36px] h-[36px]"
-                      src="/images/heart.svg"
-                      alt="heart"
-                    />
-                  </div>
+                <div className="flex flex-col gap-4">
+                  {description.map((value, index) => {
+                    return <p key={index}>{value}</p>;
+                  })}
                 </div>
               </div>
-              <div className="flex flex-col gap-4">
-                {description.map((value, index) => {
-                  return <p key={index}>{value}</p>;
-                })}
+              <div className="flex gap-5 items-center ">
+                <button className="bg-[#000000] py-3 w-[150px] rounded-sm text-[white] hover:bg-white hover:border hover:border-[#1d1d1d] duration-300 hover:text-black">
+                  Add to cart
+                </button>
+                <button className="bg-[#000000] py-3 w-[150px] rounded-sm text-[white] hover:bg-white hover:border hover:border-[#1d1d1d] duration-300 hover:text-black">
+                  Buy it now
+                </button>
+                <div className="hover:cursor-pointer object-contain border-2 rounded-md duration-300 hover:bg-slate-400 border-black ">
+                  <img
+                    className="w-[36px] h-[36px]"
+                    src="/images/heart.svg"
+                    alt="heart"
+                  />
+                </div>
               </div>
             </div>
           </section>
