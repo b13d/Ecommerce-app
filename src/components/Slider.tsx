@@ -10,14 +10,18 @@ import {
   useScroll,
   useSpring,
   useAnimationFrame,
+  useAnimate,
+  wrap,
+  stagger,
 } from "framer-motion";
 import apiElectronics from "../api/apiElectronics.json";
-import { wrap } from "framer-motion";
+import { IApi } from "./CartComponent";
 
 export default function Slider() {
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<IApi[]>([]);
   const [imageIndex, setImageIndex] = useState(0);
   const baseX = useMotionValue(0);
+  // const x = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, {
@@ -27,11 +31,12 @@ export default function Slider() {
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
     clamp: false,
   });
-  const x = useTransform(baseX, (v) => `${wrap(45, -27, v)}%`);
+  const [scope, animate] = useAnimate();
+
+  const x = useTransform(baseX, (v) => `${wrap(22.5, 5.8, v)}%`);
 
   const directionFactor = useRef<number>(1);
   useAnimationFrame((t, delta) => {
-
     // console.log(delta);
     let moveBy = directionFactor.current * 0.5 * (delta / 100);
 
@@ -43,44 +48,67 @@ export default function Slider() {
 
     moveBy += directionFactor.current * moveBy * velocityFactor.get();
 
-
     baseX.set(baseX.get() + moveBy);
   });
 
   useEffect(() => {
     const tempApi = apiElectronics;
 
-    let tempArrUrl: string[] = [];
+    let tempArrUrl: IApi[] = [];
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 6; i++) {
       tempApi.map((value) => {
-        tempArrUrl.push(value.url[0]);
+        tempArrUrl.push(value);
       });
     }
 
     setImages(tempArrUrl);
   }, []);
 
+  // useEffect(() => {
+  //   // console.log(x.getPrevious());
+  //   const sequence = [
+  //     [scope.current, { x: 1400 }],
+  //   ];
+
+  //   const enterAnimation = async () => {
+  //     let animation = animate(sequence, {
+  //       repeat: Infinity,
+  //     });
+
+  //     animation.speed = 0.1;
+  //   };
+
+  //   enterAnimation();
+  //   // setInterval(() => {
+  //   //   enterAnimation();
+  //   // }, 3000);
+  // }, []);
+
   return (
-    <div className="xl:w-[1300px] max-xl:w-full m-auto overflow-hidden">
-      <motion.div
-        className="flex justify-center  gap-4 py-5 w-full"
-        style={{ x }}
-      >
-        {images.map((value, index) => {
-          return (
-            <motion.img
-              className="bg-no-repeat max-lg:w-[250px] max-lg:h-[180px] lg:h-[250px] lg:w-[350px] object-scale-down"
-              key={index}
-              src={images[index]}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-              }}
-            />
-          );
-        })}
+    <div className="xl:w-[1300px] max-xl:w-full m-auto justify-center overflow-hidden">
+      <motion.div className="flex gap-4 py-5 w-full justify-center">
+        <motion.div
+          style={{ x }}
+          transition={{
+            type: "spring",
+            damping: 30,
+            stiffness: 20,
+            repeat: Infinity,
+            velocity: 2,
+            mass: 10,
+          }}
+          ref={scope}
+          className="flex shrink-0"
+        >
+          {images.map((value, index) => {
+            return (
+              <Link href={`products/${value.id}`} key={index}>
+                <img className="block h-[150px]" src={value.url[0]} alt="" />
+              </Link>
+            );
+          })}
+        </motion.div>
       </motion.div>
     </div>
   );

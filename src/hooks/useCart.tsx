@@ -138,29 +138,31 @@ export default function UseCart() {
                   : 0;
               return (
                 <motion.div
+                  key={index}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 * index }}
                   viewport={{ once: true }}
-                  key={index}
                   className="grid gridCol grid-cols-4 items-center max-sm:p-2 sm:px-[30px] sm:py-[15px] relative border-b-2 border-gray-300"
                 >
-                  <div className="flex max-lg:flex-col gap-2 items-center justify-center text-center">
-                    <Image
-                      className="max-lg:w-[100px] max-h-[100px]"
-                      width={135}
-                      height={120}
-                      src={value.url[0]}
-                      alt="img"
-                    />
+                  <Link href={`/products/${value.id}`}>
+                    <div className="flex max-lg:flex-col gap-2 items-center justify-center text-center">
+                      <Image
+                        className="max-lg:w-[100px] max-h-[100px]"
+                        width={135}
+                        height={120}
+                        src={value.url[0]}
+                        alt="img"
+                      />
 
-                    <div>
-                      <p className="max-sm:text-[10px] max-lg:text-[14px]">
-                        {value.title}
-                      </p>
-                      <p className="max-sm:hidden">Color: {value.color}</p>
+                      <div>
+                        <p className="max-sm:text-[10px] max-lg:text-[14px]">
+                          {value.title}
+                        </p>
+                        <p className="max-sm:hidden">Color: {value.color}</p>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
 
                   <div>
                     <h1 className="max-sm:text-[12px] text-center">
@@ -209,7 +211,7 @@ export default function UseCart() {
 
         <div className="flex gap-3 mb-6">
           <Link
-            href="/"
+            href="/products"
             className="max-sm:text-[14px] max-sm:p-2 max-sm:text-center font-semibold sm:py-3 sm:px-3 bg-[#EDA415] m-auto text-white rounded-2xl"
           >
             Continue shopping

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import apiElectronics from "../api/apiElectronics.json";
 import { count } from "console";
@@ -14,7 +14,7 @@ interface ICategories {
 }
 
 interface ILastELemet {
-  element: React.ChangeEvent<HTMLInputElement> | undefined;
+  element: React.ChangeEvent<HTMLInputElement> | HTMLInputElement | undefined;
   nameElement: string;
 }
 
@@ -41,13 +41,21 @@ export default function Products() {
   const [lastChangeElement, setLastChangeElement] = useState<ILastELemet>();
   const [rangeValue, setRangeValue] = useState<string>("25000");
   const [productsOnScreen, setProductsOnScreen] = useState<IApi[]>([]);
+  const [firstElement, setFirstElement] = useState<HTMLInputElement>();
 
+  let ref = useRef(null);
   // checked categories
 
+  useEffect(() => {
+    if (firstElement !== undefined)
+      handleChange(firstElement, "All categories", Number(rangeValue), true);
+  }, [firstElement]);
+
   const handleChange = (
-    element: React.ChangeEvent<HTMLInputElement> | undefined,
+    element: React.ChangeEvent<HTMLInputElement> | HTMLInputElement | undefined,
     nameElement: string,
-    currentRangeValue?: number
+    currentRangeValue?: number,
+    firstDownload?: boolean
   ) => {
     let tempLastElement: ILastELemet = {
       element,
@@ -60,7 +68,31 @@ export default function Products() {
 
     if (currentRangeValue === undefined) currentRangeValue = Number(rangeValue);
 
-    if (element !== undefined ? element.target.checked : false) {
+    debugger;
+
+    if (firstDownload) {
+      listCategories[0].checked = true;
+
+      let tempArr: IApi[] = [];
+
+      apiElectronics.map((value) => {
+        if (
+          currentRangeValue !== undefined
+            ? value.price <= currentRangeValue
+            : true
+        )
+          tempArr.push(value);
+      });
+
+      setLastChangeElement(tempLastElement);
+      setProductsOnScreen([...tempArr]);
+    } else if (
+      element !== undefined
+        ? !(element instanceof HTMLInputElement)
+          ? element.target.checked
+          : element.checked
+        : false
+    ) {
       let tempArr: IApi[] = [];
 
       setLastChangeElement(tempLastElement);
@@ -155,17 +187,14 @@ export default function Products() {
 
   console.log(listCategories);
 
+  useEffect(() => {
+    let list = document.querySelector(".list-categories");
+
+    if (list !== null)
+      setFirstElement(list.children[0].getElementsByTagName("input")[0]);
+  }, [ref]);
   return (
     <div className="max-w-[1300px] m-auto">
-          {/* <div className="text-right mb-5">
-            <Link
-              className="border py-3 px-5  text-center hover:bg-black hover:text-white duration-300"
-              href="/"
-            >
-              Вернуться
-            </Link>
-          </div> */}
-
       <div className="flex gap-2 mb-4">
         <section className="leftProducts w-[320px] ">
           <div className="border-b-2 border-gray pb-4 mb-4">
@@ -173,12 +202,13 @@ export default function Products() {
               <h1 className="text-[#316887] font-semibold">Categories</h1>
               <h1 className="cursor-pointer text-[#888585]">Reset</h1>
             </div>
-            <ul className="flex flex-col gap-1">
+            <ul className="list-categories flex flex-col gap-1">
               {listCategories.map((value, index) => {
                 return (
                   <li key={index} className="flex justify-between">
                     <div>
                       <input
+                        ref={ref}
                         className="mr-1"
                         onChange={(e) => handleChange(e, value.name)}
                         type="checkbox"

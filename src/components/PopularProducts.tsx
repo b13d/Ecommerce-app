@@ -164,15 +164,17 @@ export default function PopularProducts() {
                   key={index}
                   className="flex flex-col border rounded-xl p-4"
                 >
-                  <div className="flex justify-center relative">
-                    <Image
-                      className="object-contain w-[235px] h-[200px] mb-3"
-                      src={value.url[0]}
-                      width={180}
-                      height={180}
-                      alt="popular-item"
-                    />
-                  </div>
+                  <Link href={`products/${value.id}`}>
+                    <div className="flex justify-center relative">
+                      <Image
+                        className="object-contain w-[235px] h-[200px] mb-3"
+                        src={value.url[0]}
+                        width={180}
+                        height={180}
+                        alt="popular-item"
+                      />
+                    </div>
+                  </Link>
 
                   <div className="flex flex-col gap-1">
                     <p className="min-h-[70px] text-[#1B5A7D] font-semibold">

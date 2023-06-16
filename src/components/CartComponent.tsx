@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, createContext } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export interface IApi {
   id: number;
@@ -94,18 +95,17 @@ export default function CartComponent({
           {products &&
             products.map((value, index) => {
               return (
-                <div
-                  className="flex items-center gap-3 px-4 py-2 bg-[#ffffff] justify-between"
-                  key={index}
-                >
-                  <img
-                    className="w-[40px] h-[40px]  object-contain"
-                    src={value.url[0]}
-                    alt=""
-                  />
-                  <p className="text-[14px]">{value.title}</p>
-                  <h2>{value.price}</h2>
-                </div>
+                <Link key={index} href={`products/${value.id}`}>
+                  <div className="flex items-center gap-3 px-4 py-2 bg-[#ffffff] justify-between">
+                    <img
+                      className="w-[40px] h-[40px]  object-contain"
+                      src={value.url[0]}
+                      alt=""
+                    />
+                    <p className="text-[14px]">{value.title}</p>
+                    <h2>{value.price}</h2>
+                  </div>
+                </Link>
               );
             })}
         </motion.div>

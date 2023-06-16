@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import apiElectronics from "../api/apiElectronics.json";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function HeaderMainInfo() {
   const [currentImage, setCurrentImage] = useState(0);
@@ -56,28 +57,32 @@ export default function HeaderMainInfo() {
               key={index}
             >
               <div className="w-[300px] ease-out">
-                <h1 className="max-lg:text-[18px] lg:text-[22px]">{product.title}</h1>
+                <h1 className="max-lg:text-[18px] lg:text-[22px]">
+                  {product.title}
+                </h1>
               </div>
               <div
                 className="flex  items-center gap-3 ease-out"
                 key={product.id}
               >
-                <div className="flex flex-col gap-6 items-center">
-                  <img
-                    className="max-sm:w-[50%] max-sm:h-[50%] sm:w-[350px] object-scale-down sm:h-[250px] ease-out"
-                    src={product.url[0]}
-                    alt={product.title}
-                  />
+                <Link href={`products/${product.id}`}>
+                  <div className="flex flex-col gap-6 items-center">
+                    <img
+                      className="max-sm:w-[50%] max-sm:h-[50%] sm:w-[350px] object-scale-down sm:h-[250px] ease-out"
+                      src={product.url[0]}
+                      alt={product.title}
+                    />
 
-                  <div className="flex items-center gap-2">
-                    <progress
-                      className="h-[4px]"
-                      max={100}
-                      value={percent}
-                    ></progress>
-                    <span>{index + 1} / 3</span>
+                    <div className="flex items-center gap-2">
+                      <progress
+                        className="h-[4px]"
+                        max={100}
+                        value={percent}
+                      ></progress>
+                      <span>{index + 1} / 3</span>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
               <h1 className="max-sm:text-[22px] max-lg:w-auto lg:w-[300px] max-lg:text-[26px]  lg:text-[30px]">
                 Цена:{" "}
