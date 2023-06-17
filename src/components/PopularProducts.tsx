@@ -164,6 +164,18 @@ export default function PopularProducts() {
                   key={index}
                   className="flex flex-col border rounded-xl p-4"
                 >
+                  <div className="flex justify-end gap-2">
+                    <button onClick={() => handleClickBuy(value)}>
+                      <motion.img
+                        onTap={onTap}
+                        className="w-[32px] h-[32px] border-[#313131] border-2 p-1 rounded-md hover:bg-gray-300"
+                        width={32}
+                        height={32}
+                        src="/images/shopping-cart.png"
+                        alt="buy-icon"
+                      />
+                    </button>
+                  </div>
                   <Link href={`products/${value.id}`}>
                     <div className="flex justify-center relative">
                       <Image
@@ -183,27 +195,6 @@ export default function PopularProducts() {
                     <p className="font-bold text-[20px] ">
                       <span className="text-orange-600">{value.price}</span>₽
                     </p>
-                    <div className="flex gap-2">
-                      <button onClick={() => handleClickBuy(value)}>
-                        <motion.img
-                          onTap={onTap}
-                          className="w-[32px] h-[32px] border-[#313131] border-2 p-1 rounded-md hover:bg-gray-300"
-                          width={32}
-                          height={32}
-                          src="/images/shopping-cart.png"
-                          alt="buy-icon"
-                        />
-                      </button>
-                      {/* <button>
-                        <Image
-                          className="w-[32px] h-[32px] border-[#313131] border-2 p-1 rounded-md hover:bg-gray-300"
-                          width={32}
-                          height={32}
-                          src="/images/heart.png"
-                          alt="heart-icon"
-                        />
-                      </button> */}
-                    </div>
                   </div>
                 </motion.div>
               );

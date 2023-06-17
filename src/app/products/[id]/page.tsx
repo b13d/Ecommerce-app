@@ -28,7 +28,7 @@ export default function Product({ params }: { params: { id: string } }) {
     const handleGetData = async () => {
       let apiData: IApi = await getData(params.id);
 
-      console.log(apiData);
+      // console.log(apiData);
       setData(apiData);
     };
 
@@ -48,7 +48,7 @@ export default function Product({ params }: { params: { id: string } }) {
 
   useEffect(() => {}, [newPrice]);
 
-  console.log(data);
+  // console.log(data);
   if (data !== undefined) {
     let description = data.description.split(";");
 
@@ -207,7 +207,7 @@ export default function Product({ params }: { params: { id: string } }) {
             </div>
           </section>
 
-          <RelatedProduct currentIndex={data.id} />
+          <RelatedProduct currentIndex={data.id - 1} />
 
           <CartComponent
             newProduct={product}
@@ -226,7 +226,7 @@ async function getData(currentId: string) {
     if (value.id === Number(currentId)) return value;
   });
 
-  console.log(res);
+  // console.log(res);
 
   return res[0];
 }

@@ -34,7 +34,7 @@ export default function CartComponent({
   // debugger
 
   useEffect(() => {
-    console.log("Беру данные");
+    // console.log("Беру данные");
     let tempLocal = localStorage.getItem("products");
     tempLocal !== null ? setLocalProducts(JSON.parse(tempLocal)) : "";
     // setLocalProducts(tempLocal !== null ? tempLocal : "");
@@ -48,7 +48,7 @@ export default function CartComponent({
 
   useEffect(() => {
     // setShowCart(true);
-    console.log(products);
+    // console.log(products);
 
     if (products.length > 0) {
       // mb error
@@ -75,9 +75,9 @@ export default function CartComponent({
     let tempArrProducts: IApi[] = [...products];
 
     if (products !== null && newProduct !== undefined) {
-      console.log(products);
-      console.log(newProduct);
-      console.log(tempArrProducts);
+      // console.log(products);
+      // console.log(newProduct);
+      // console.log(tempArrProducts);
 
       tempArrProducts.push(newProduct);
 

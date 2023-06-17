@@ -78,7 +78,8 @@ export default function Products() {
       apiElectronics.map((value) => {
         if (
           currentRangeValue !== undefined
-            ? value.price <= currentRangeValue
+            ? value.price <= currentRangeValue ||
+              (value.price >= 50000 && currentRangeValue === 50000)
             : true
         )
           tempArr.push(value);
@@ -104,7 +105,8 @@ export default function Products() {
         apiElectronics.map((value) => {
           if (
             currentRangeValue !== undefined
-              ? value.price <= currentRangeValue
+              ? value.price <= currentRangeValue ||
+                (value.price >= 50000 && currentRangeValue === 50000)
               : true
           )
             tempArr.push(value);
@@ -136,7 +138,9 @@ export default function Products() {
                 listCategoriesValue.name.toLowerCase() &&
               listCategoriesValue.checked &&
               currentRangeValue !== undefined &&
-              apiElectronicsValue.price < currentRangeValue
+              (apiElectronicsValue.price < currentRangeValue ||
+                (apiElectronicsValue.price >= 50000 &&
+                  currentRangeValue === 50000))
             ) {
               tempArr.push(apiElectronicsValue);
             }
@@ -185,7 +189,7 @@ export default function Products() {
     setRangeValue(tempValue.toString());
   };
 
-  console.log(listCategories);
+  // console.log(listCategories);
 
   useEffect(() => {
     let list = document.querySelector(".list-categories");
@@ -253,10 +257,10 @@ export default function Products() {
             <p>0 - {rangeValue === "50000" ? ">50000" : rangeValue} ₽</p>
           </div>
         </section>
-        <section className="justify-center right-products grid gap-3 w-[100%] grid-rows-[313px]">
+        <section className="justify-center right-products grid gap-3 w-[100%] grid-rows-[350px]">
           {productsOnScreen.map((value: IApi, index) => {
             return (
-              <Link key={index} href={`/products/${value.id}`}>
+              <Link  key={value.id} href={`/products/${value.id}`}>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -265,7 +269,7 @@ export default function Products() {
                     type: "spring",
                     stiffness: 10,
                   }}
-                  className="flex flex-col border rounded-xl p-4 pb-8 max-h-[313px]"
+                  className="flex flex-col border rounded-xl p-4 pb-8 h-[350px]"
                 >
                   <div className="h-[220px] flex flex-col justify-center relative">
                     <p className="text-right font-bold">{value.price} ₽</p>
