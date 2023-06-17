@@ -97,7 +97,7 @@ export default function Product({ params }: { params: { id: string } }) {
             <div className="flex justify-center items-center m-auto flex-col gap-4">
               <div>
                 <img
-                  className="max-md:max-h-[300px]"
+                  className="max-md:max-h-[300px] max-h-[500px]"
                   src={data !== undefined ? data.url[0] : ""}
                   alt="current-product"
                 />

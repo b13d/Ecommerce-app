@@ -69,10 +69,9 @@ export default function Header() {
           </div>
         </motion.div>
       }
-      <div className="max-w-[1300px] m-auto">
         <motion.div
-          style={{ translateY: scrollY }}
-          className="wrapper-header z-10 relative flex justify-between pt-[20px]  pb-[20px] bg-white/30 backdrop-blur items-center"
+          // style={{ translateY: scrollY }}
+          className="wrapper-header left-0 w-full z-10 fixed m-auto top-0 m flex justify-around pt-[20px]  pb-[20px] bg-white/30 backdrop-blur items-center"
         >
           <div className="w-[200px] flex items-center gap-4">
             <input
@@ -107,6 +106,7 @@ export default function Header() {
             </Link>
           </div>
         </motion.div>
+      <div className="max-w-[1300px] m-auto">
         {currentUrl !== "" && (
           <div className="py-[15px] mb-[15px]">
             <p>{`Home > ${currentUrl.split("/")[1]} ${

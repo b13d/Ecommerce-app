@@ -38,7 +38,7 @@ export default function Slider() {
   const directionFactor = useRef<number>(1);
   useAnimationFrame((t, delta) => {
     // console.log(delta);
-    let moveBy = directionFactor.current * 0.5 * (delta / 100);
+    let moveBy = directionFactor.current * 0.5 * (delta / 1000);
 
     if (velocityFactor.get() < 0) {
       directionFactor.current = -1;
@@ -91,15 +91,10 @@ export default function Slider() {
         <motion.div
           style={{ x }}
           transition={{
-            type: "spring",
-            damping: 30,
-            stiffness: 20,
-            repeat: Infinity,
-            velocity: 2,
-            mass: 10,
+
           }}
           ref={scope}
-          className="flex shrink-0"
+          className="flex shrink-0 gap-4"
         >
           {images.map((value, index) => {
             return (
