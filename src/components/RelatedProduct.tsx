@@ -13,19 +13,19 @@ export default function RelatedProduct({ currentIndex }: IPropsProduct) {
   let listApi: IApi[] = ApiElectronics;
 
   return (
-    <section className="grid grid-cols-4 gap-4 mb-[150px]">
+    <section className="max-sm: max-md:items-center max-md:justify-center flex flex-wrap gap-4 mb-[150px]">
       {listApi.map((value) => {
         if (value.id !== currentIndex) {
           return (
             <Link href={`products/${value.id}`} key={value.id}>
-              <div className="flex flex-col relative gap-5 border rounded-xl p-4">
-                <motion.img
+              <div className="max-sm:w-[300px] w-[350px] flex flex-col relative gap-5 border rounded-xl p-4">
+                {/* <motion.img
                   className="w-[32px] h-[32px] ml-auto border-[#313131] border-2 p-1 rounded-md hover:bg-gray-300"
                   width={32}
                   height={32}
                   src="/images/heart.png"
                   alt="heart-icon"
-                />
+                /> */}
                 <div className="flex justify-center relative">
                   <img
                     className="object-scale-down h-[200px]"

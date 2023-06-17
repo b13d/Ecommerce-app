@@ -93,29 +93,30 @@ export default function Product({ params }: { params: { id: string } }) {
             </Link>
           </div> */}
 
-          <section className="flex gap-10 mb-[75px]">
+          <section className="max-md:flex-col max-md:justify-center flex gap-10 mb-[75px]">
             <div className="flex justify-center items-center m-auto flex-col gap-4">
               <div>
                 <img
+                  className="max-md:max-h-[300px]"
                   src={data !== undefined ? data.url[0] : ""}
                   alt="current-product"
                 />
               </div>
 
-              <div className="flex gap-5  justify-between">
+              <div className="max-sm:flex-col max-sm:justify-center items-center  flex gap-5  justify-between">
                 <img
-                  className="w-[50%] border rounded-2xl h-[220px]"
+                  className="max-md: max-h-[300px] max-sm:w-[300px] w-[50%] border rounded-2xl h-[220px]"
                   src={data !== undefined ? data.url[1] : ""}
                   alt="next-product"
                 />
                 <img
-                  className="w-[50%] border rounded-2xl h-[220px]"
+                  className="max-md: max-h-[300px] max-sm:w-[300px] w-[50%] border rounded-2xl h-[220px]"
                   src={data !== undefined ? data.url[2] : ""}
                   alt="next-product"
                 />
               </div>
             </div>
-            <div className="w-[40%]  shadow-lg p-4">
+            <div className="max-md:w-[100%] w-[40%]  shadow-lg p-4">
               <div className="border-b-2 border-[#BDBDBD] pb-4 mb-4 flex flex-col gap-4">
                 <h1 className="text-[#fd9915] tracking-wider text-[26px] leading-8 font-semibold">
                   {data !== undefined ? data.title : ""}
@@ -154,7 +155,7 @@ export default function Product({ params }: { params: { id: string } }) {
                     : ""}
                 </div> */}
                 {data.gigabytes && (
-                  <div className="flex gap-2 items-center">
+                  <div className="flex gap-2 flex-wrap items-center">
                     <span>gigabytes: </span>
                     {data.gigabytes?.map((value, index) => {
                       let styleButton = "";
@@ -195,13 +196,13 @@ export default function Product({ params }: { params: { id: string } }) {
                 <button className="bg-[#000000] py-3 w-[150px] rounded-sm text-[white] hover:bg-white hover:border hover:border-[#1d1d1d] duration-300 hover:text-black">
                   Buy it now
                 </button>
-                <div className="hover:cursor-pointer object-contain border-2 rounded-md duration-300 hover:bg-slate-400 border-black ">
+                {/* <div className="hover:cursor-pointer object-contain border-2 rounded-md duration-300 hover:bg-slate-400 border-black ">
                   <img
                     className="w-[36px] h-[36px]"
                     src="/images/heart.svg"
                     alt="heart"
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </section>

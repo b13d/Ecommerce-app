@@ -195,8 +195,8 @@ export default function Products() {
   }, [ref]);
   return (
     <div className="max-w-[1300px] m-auto">
-      <div className="flex gap-2 mb-4">
-        <section className="leftProducts w-[320px] ">
+      <div className="max-sm:flex-col  max-sm:justify-center flex gap-2 mb-4">
+        <section className="max-sm:m-auto max-sm:px-2 leftProducts w-[320px] ">
           <div className="border-b-2 border-gray pb-4 mb-4">
             <div className="flex justify-between pb-3">
               <h1 className="text-[#316887] font-semibold">Categories</h1>
@@ -253,7 +253,7 @@ export default function Products() {
             <p>0 - {rangeValue === "50000" ? ">50000" : rangeValue} ₽</p>
           </div>
         </section>
-        <section className="RightProducts grid grid-cols-3 gap-3 w-[100%] grid-rows-[313px]">
+        <section className="justify-center right-products grid gap-3 w-[100%] grid-rows-[313px]">
           {productsOnScreen.map((value: IApi, index) => {
             return (
               <Link key={index} href={`/products/${value.id}`}>

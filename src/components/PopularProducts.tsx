@@ -194,7 +194,7 @@ export default function PopularProducts() {
                           alt="buy-icon"
                         />
                       </button>
-                      <button>
+                      {/* <button>
                         <Image
                           className="w-[32px] h-[32px] border-[#313131] border-2 p-1 rounded-md hover:bg-gray-300"
                           width={32}
@@ -202,7 +202,7 @@ export default function PopularProducts() {
                           src="/images/heart.png"
                           alt="heart-icon"
                         />
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </motion.div>
