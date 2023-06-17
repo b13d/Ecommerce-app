@@ -47,7 +47,7 @@ export default function Header() {
       {
         <motion.div
           layout
-          className="background-modal z-20 relative"
+          className=" background-modal z-20 relative"
           initial={{ opacity: 0, display: "none" }}
           animate={modal ? "open" : "closed"}
           transition={{
@@ -106,7 +106,7 @@ export default function Header() {
             </Link>
           </div>
         </motion.div>
-      <div className="max-w-[1300px] m-auto">
+      <div className="max-w-[1300px] mt-[25vh] m-auto">
         {currentUrl !== "" && (
           <div className="py-[15px] mb-[15px]">
             <p>{`Home > ${currentUrl.split("/")[1]} ${
