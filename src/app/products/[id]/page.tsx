@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import apiElectronics from "@/api/apiElectronics.json";
 import { IApi } from "@/components/CartComponent";
 import Link from "next/link";
+import CartComponent from "@/components/CartComponent";
 
 interface IUser {
   id: number;
@@ -17,13 +18,17 @@ interface IUser {
 
 export default function Product({ params }: { params: { id: string } }) {
   const [data, setData] = useState<IApi>();
+  const [product, setProducts] = useState<IApi>();
   const [currentGigabyte, setCurrentGigabute] = useState(0);
   const [indexButton, setIndexButton] = useState(0);
+  const [showCart, setShowCart] = useState<boolean>(false);
+  const [newPrice, setNewPrice] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     const handleGetData = async () => {
       let apiData: IApi = await getData(params.id);
 
+      console.log(apiData);
       setData(apiData);
     };
 
@@ -32,13 +37,47 @@ export default function Product({ params }: { params: { id: string } }) {
 
   const handleChangeColor = () => {};
 
+  useEffect(() => {
+    setProducts(undefined);
+  }, [product]);
+
+  const handleChangeGigabytes = (index: number) => {
+    setIndexButton(index);
+    setCurrentGigabute(index !== 0 ? 0.5 + (index + 1) * 0.5 : 1);
+  };
+
+  useEffect(() => {}, [newPrice]);
+
   console.log(data);
   if (data !== undefined) {
     let description = data.description.split(";");
 
-    const handleChangeGigabytes = (index: number) => {
-      setIndexButton(index);
-      setCurrentGigabute(index !== 0 ? 0.5 + (index + 1) * 0.5 : 1);
+    const handleClickBuy = () => {
+      let actualPriceProduct = document.querySelector(".price")?.innerHTML;
+      let currentGigabyte = document.querySelector(".gigabyte")?.innerHTML;
+
+      if (Number(actualPriceProduct) > data.price) {
+        let productTitle = data.title + " " + ` GB: ${currentGigabyte}`;
+
+        let tempData: IApi = {
+          id: data.id,
+          category: data.category,
+          color: data.color,
+          description: data.description,
+          price: Number(actualPriceProduct),
+          star: data.star,
+          title: productTitle,
+          url: data.url,
+          gigabytes: data.gigabytes,
+        };
+        // let oldPrice = data.price;
+        // tempData.price = Number(actualPriceProduct);
+
+        setProducts(tempData);
+        setNewPrice(undefined);
+        // data.price = oldPrice;
+      } else setProducts(data);
+      setShowCart(true);
     };
 
     return (
@@ -82,7 +121,7 @@ export default function Product({ params }: { params: { id: string } }) {
                   {data !== undefined ? data.title : ""}
                 </h1>
                 <p className="text-[24px]">
-                  <span className="text-[28px] font-semibold">
+                  <span className="price text-[28px] font-semibold">
                     {data !== undefined
                       ? currentGigabyte !== 0
                         ? data.price * currentGigabyte
@@ -122,7 +161,7 @@ export default function Product({ params }: { params: { id: string } }) {
 
                       if (indexButton === index) {
                         styleButton =
-                          "bg-white hover:bg-black hover:text-white border border-black  duration-300 text-black py-2 px-4";
+                          "gigabyte bg-white hover:bg-black hover:text-white border border-black  duration-300 text-black py-2 px-4";
                       } else {
                         styleButton =
                           "bg-[#353535] hover:bg-[#e7e7e7] hover:text-black  duration-300 text-white py-2 px-4";
@@ -147,7 +186,10 @@ export default function Product({ params }: { params: { id: string } }) {
                 </div>
               </div>
               <div className="flex gap-5 items-center ">
-                <button className="bg-[#000000] py-3 w-[150px] rounded-sm text-[white] hover:bg-white hover:border hover:border-[#1d1d1d] duration-300 hover:text-black">
+                <button
+                  onClick={() => handleClickBuy()}
+                  className="bg-[#000000] py-3 w-[150px] rounded-sm text-[white] hover:bg-white hover:border hover:border-[#1d1d1d] duration-300 hover:text-black"
+                >
                   Add to cart
                 </button>
                 <button className="bg-[#000000] py-3 w-[150px] rounded-sm text-[white] hover:bg-white hover:border hover:border-[#1d1d1d] duration-300 hover:text-black">
@@ -165,6 +207,12 @@ export default function Product({ params }: { params: { id: string } }) {
           </section>
 
           <RelatedProduct currentIndex={data.id} />
+
+          <CartComponent
+            newProduct={product}
+            showCart={showCart}
+            setShowCart={setShowCart}
+          />
         </section>
         <Footer />
       </>

@@ -27,26 +27,28 @@ export default function CartComponent({
   showCart,
   setShowCart,
 }: IProps) {
-  let localProducts: string | null = "";
-
-  if (typeof window !== "undefined") {
-    localProducts = localStorage.getItem("products" || "");
-  }
-
-  useEffect(() => {
-    if (localProducts !== null) {
-      setProducts(JSON.parse(localProducts));
-    }
-  }, []);
-
+  const [localProducts, setLocalProducts] = useState<IApi[]>([]);
   const [products, setProducts] = useState<IApi[]>([]);
   const [mainTimer, setMainTimer] = useState<number>(0);
   const [timer, setTimer] = useState<number[]>();
+  // debugger
+
+  useEffect(() => {
+    console.log("Беру данные");
+    let tempLocal = localStorage.getItem("products");
+    tempLocal !== null ? setLocalProducts(JSON.parse(tempLocal)) : "";
+    // setLocalProducts(tempLocal !== null ? tempLocal : "");
+  }, [newProduct]);
+
+  useEffect(() => {
+    if (localProducts !== null) {
+      setProducts(localProducts);
+    }
+  }, [localProducts]);
 
   useEffect(() => {
     // setShowCart(true);
-
-    // console.log(mainTimer);
+    console.log(products);
 
     if (products.length > 0) {
       // mb error
@@ -62,24 +64,21 @@ export default function CartComponent({
 
       setTimer(list);
 
-      // console.log(timer);
-      // console.log(mainTimer);
-
       if (mainTimer !== undefined && timer !== undefined) {
         window.clearTimeout(timer[timer.length - 2]);
         setMainTimer(temp);
       }
     }
-
-    // clearTimeout(timer)
-
-    // console.log(products);
   }, [products]);
 
   useEffect(() => {
     let tempArrProducts: IApi[] = [...products];
 
     if (products !== null && newProduct !== undefined) {
+      console.log(products);
+      console.log(newProduct);
+      console.log(tempArrProducts);
+
       tempArrProducts.push(newProduct);
 
       setProducts(tempArrProducts);
@@ -87,6 +86,9 @@ export default function CartComponent({
       localStorage.setItem("products", JSON.stringify(tempArrProducts));
     }
   }, [newProduct]);
+
+  // console.log(products);
+  // console.log(localProducts);
 
   return (
     <>

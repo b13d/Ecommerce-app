@@ -68,7 +68,7 @@ export default function Products() {
 
     if (currentRangeValue === undefined) currentRangeValue = Number(rangeValue);
 
-    debugger;
+    // debugger;
 
     if (firstDownload) {
       listCategories[0].checked = true;
