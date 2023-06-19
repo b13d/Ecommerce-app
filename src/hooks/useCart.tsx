@@ -21,7 +21,6 @@ export default function UseCart() {
     0
     // document.getElementsByTagName("body")[0].clientWidth
   );
-
   useEffect(() => {
     if (localProducts !== null) {
       setProducts(JSON.parse(localProducts));
@@ -63,8 +62,6 @@ export default function UseCart() {
 
     setCountQuantity(arr);
   }, [products]);
-
-  useEffect(() => {}, [countQuantity]);
 
   const { scrollYProgress, scrollY } = useScroll();
   let sum: number = 0;
@@ -120,11 +117,15 @@ export default function UseCart() {
     }
   }, [scrollY]);
 
+  useEffect(() => {
+    console.log(scrollY.getPrevious());
+  }, [scrollY]);
+
   return (
     <section className="max-w-[1300px]  m-auto flex max-sm:flex-col gap-2 items-start justify-between">
       <div className=" w-[100%] lg:w-[75%]">
-        <div className="grid  mb-6">
-          <div className="grid gridCol grid-cols-4 bg-[#E2F4FF] max-sm:p-2 sm:px-[30px] sm:py-[15px] ">
+        <div className="list-products grid mb-6">
+          <div className="grid gridCol grid-cols-4 bg-[#ffffff] shadow-lg  rounded-xl max-sm:p-2 sm:px-[30px] sm:py-[15px] ">
             <h1>Product</h1>
             <h1 className="text-center">Price</h1>
             <h1 className="text-center">Quantity</h1>
@@ -143,7 +144,7 @@ export default function UseCart() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 * index }}
                   viewport={{ once: true }}
-                  className="grid gridCol grid-cols-4 items-center max-sm:p-2 sm:px-[30px] sm:py-[15px] relative border-b-2 border-gray-300"
+                  className="grid gridCol grid-cols-4 shadow-md items-center max-sm:p-2 sm:px-[30px] sm:py-[15px] relative border-b-2 border-gray-300"
                 >
                   <Link href={`/products/${value.id}`}>
                     <div className="flex max-lg:flex-col gap-2 items-center justify-center text-center">
@@ -212,7 +213,7 @@ export default function UseCart() {
         <div className="flex gap-3 mb-6">
           <Link
             href="/products"
-            className="max-sm:text-[14px] max-sm:p-2 max-sm:text-center font-semibold sm:py-3 sm:px-3 bg-[#EDA415] m-auto text-white rounded-2xl"
+            className="max-sm:text-[14px] max-sm:p-2 max-sm:text-center font-semibold sm:py-3 sm:px-3 hover:text-[#EDA415] hover:bg-white hover:border hover:border-[#EDA415] duration-300 bg-[#EDA415] m-auto text-white rounded-2xl"
           >
             Continue shopping
           </Link>
@@ -220,7 +221,7 @@ export default function UseCart() {
           {products.length > 0 && (
             <button
               onClick={() => handleDeleteAll()}
-              className="font-semibold sm:py-3 sm:px-9 w-[50%] m-auto border-[#C33131] max-sm:text-[14px] max-sm:p-2 max-sm:text-center border text-[#C33131] rounded-2xl"
+              className="font-semibold sm:py-3 sm:px-9 w-[50%] m-auto hover:text-white hover:bg-[#C33131] hover:border  duration-300 border-[#C33131] max-sm:text-[14px] max-sm:p-2 max-sm:text-center border text-[#C33131] rounded-2xl"
             >
               Clear cart
             </button>
@@ -229,13 +230,15 @@ export default function UseCart() {
       </div>
 
       <motion.div
-        style={{ translateY: currentWidthScreen > 1000 ? scrollY : "0px" }}
+        style={{
+          y: currentWidthScreen > 1000 ? scrollY : 0,
+        }}
         className="grid relative mb-6 max-sm:w-full sm:w-[35%] max-sm:p-1"
       >
-        <div className="bg-[#E2F4FF] max-sm:p-2 max-sm:mb-2 sm:px-[30px] sm:py-[15px]">
+        <div className="bg-[#ffffff] shadow-lg rounded-xl max-sm:p-2 max-sm:mb-2 sm:px-[30px] sm:py-[15px]">
           <h1>Cart total</h1>
         </div>
-        <div className=" sm:p-6">
+        <div className=" sm:p-6 shadow-md">
           <div className="flex flex-col gap-3">
             <div className="flex justify-between border-b-2 border-gray-300 pb-3 mb-3">
               <h1>Subtotal</h1>

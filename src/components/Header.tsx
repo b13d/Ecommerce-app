@@ -106,7 +106,7 @@ export default function Header() {
             </Link>
           </div>
         </motion.div>
-      <div className="max-w-[1300px] mt-[25vh] m-auto">
+      <div className="max-w-[1300px] mt-[100px] m-auto">
         {currentUrl !== "" && (
           <div className="py-[15px] mb-[15px]">
             <p>{`Home > ${currentUrl.split("/")[1]} ${

@@ -82,7 +82,7 @@ export default function Product({ params }: { params: { id: string } }) {
 
     return (
       <>
-        <section className="max-w-[1300px] m-auto mt-[25vh]">
+        <section className="max-w-[1300px] m-auto mt-[100px]">
           <Header />
           {/* <div className="text-right mb-5">
             <Link
