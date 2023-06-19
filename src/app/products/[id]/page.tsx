@@ -82,7 +82,7 @@ export default function Product({ params }: { params: { id: string } }) {
 
     return (
       <>
-        <section className="max-w-[1300px] m-auto mt-[100px]">
+        <section className="max-w-[1300px] bg-white rounded-md px-2 m-auto mt-[100px]">
           <Header />
           {/* <div className="text-right mb-5">
             <Link
@@ -93,7 +93,7 @@ export default function Product({ params }: { params: { id: string } }) {
             </Link>
           </div> */}
 
-          <section className="max-md:flex-col max-md:justify-center flex gap-10 mb-[75px]">
+          <section className="max-md:flex-col max-md:justify-center p-5 flex gap-10 mb-5">
             <div className="flex justify-center items-center m-auto flex-col gap-4">
               <div>
                 <img
@@ -105,12 +105,12 @@ export default function Product({ params }: { params: { id: string } }) {
 
               <div className="max-sm:flex-col max-sm:justify-center items-center  flex gap-5  justify-between">
                 <img
-                  className="max-md: max-h-[300px] max-sm:w-[300px] w-[50%] border rounded-2xl h-[220px]"
+                  className="max-md: max-h-[300px] max-sm:max-w-[300px] sm:w-[50%]  h-[220px]"
                   src={data !== undefined ? data.url[1] : ""}
                   alt="next-product"
                 />
                 <img
-                  className="max-md: max-h-[300px] max-sm:w-[300px] w-[50%] border rounded-2xl h-[220px]"
+                  className="max-md: max-h-[300px] max-sm:max-w-[300px] sm:w-[50%]  h-[220px]"
                   src={data !== undefined ? data.url[2] : ""}
                   alt="next-product"
                 />

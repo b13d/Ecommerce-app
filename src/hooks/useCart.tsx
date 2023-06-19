@@ -122,8 +122,8 @@ export default function UseCart() {
   }, [scrollY]);
 
   return (
-    <section className="max-w-[1300px]  m-auto flex max-sm:flex-col gap-2 items-start justify-between">
-      <div className=" w-[100%] lg:w-[75%]">
+    <section className="max-w-[1300px] min-h-[100vh] bg-white rounded-md lg:p-10 mb-10 m-auto flex max-sm:flex-col gap-2 items-start justify-between">
+      <div className="sm:w-[100%] ">
         <div className="list-products grid mb-6">
           <div className="grid gridCol grid-cols-4 bg-[#ffffff] shadow-lg  rounded-xl max-sm:p-2 sm:px-[30px] sm:py-[15px] ">
             <h1>Product</h1>
@@ -233,12 +233,12 @@ export default function UseCart() {
         style={{
           y: currentWidthScreen > 1000 ? scrollY : 0,
         }}
-        className="grid relative mb-6 max-sm:w-full sm:w-[35%] max-sm:p-1"
+        className="grid max-sm:rounded-md shadow-md relative mb-6 max-sm:w-full  max-sm:p-1"
       >
         <div className="bg-[#ffffff] shadow-lg rounded-xl max-sm:p-2 max-sm:mb-2 sm:px-[30px] sm:py-[15px]">
           <h1>Cart total</h1>
         </div>
-        <div className=" sm:p-6 shadow-md">
+        <div className=" sm:p-6">
           <div className="flex flex-col gap-3">
             <div className="flex justify-between border-b-2 border-gray-300 pb-3 mb-3">
               <h1>Subtotal</h1>

@@ -257,7 +257,7 @@ export default function Products() {
             <p>0 - {rangeValue === "50000" ? ">50000" : rangeValue} ₽</p>
           </div>
         </section>
-        <section className="justify-center right-products grid gap-3 w-[100%] grid-rows-[350px]">
+        <section className="justify-center right-products grid gap-3 w-[100%] grid-rows-[350px] pb-5">
           {productsOnScreen.map((value: IApi, index) => {
             return (
               <Link  key={value.id} href={`/products/${value.id}`}>
@@ -269,7 +269,7 @@ export default function Products() {
                     type: "spring",
                     stiffness: 10,
                   }}
-                  className="flex flex-col border rounded-xl p-4 pb-8 h-[350px]"
+                  className="shadow-md flex flex-col border rounded-xl p-4 pb-8 h-[350px]"
                 >
                   <div className="h-[220px] flex flex-col justify-center relative">
                     <p className="text-right font-bold">{value.price} ₽</p>

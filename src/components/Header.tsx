@@ -69,43 +69,43 @@ export default function Header() {
           </div>
         </motion.div>
       }
-        <motion.div
-          // style={{ translateY: scrollY }}
-          className="wrapper-header left-0 w-full z-10 fixed m-auto top-0 m flex justify-around pt-[20px]  pb-[20px] bg-white/30 backdrop-blur items-center"
-        >
-          <div className="w-[200px] flex items-center gap-4">
-            <input
-              id="menu__toggle"
-              className="opacity-0"
-              onChange={(e) => handleChange(e)}
-              type="checkbox"
-              checked={checked}
-            />
-            <label className="menu__btn" htmlFor="menu__toggle">
-              <span></span>
-            </label>
-            <h1>MENU</h1>
-          </div>
-          <div>
+      <motion.div
+        // style={{ translateY: scrollY }}
+        className="wrapper-header left-0 w-full z-10 fixed m-auto top-0 m flex justify-around pt-[20px]  pb-[20px] bg-white/30 backdrop-blur items-center"
+      >
+        <div className="w-[200px] flex items-center gap-4">
+          <input
+            id="menu__toggle"
+            className="opacity-0"
+            onChange={(e) => handleChange(e)}
+            type="checkbox"
+            checked={checked}
+          />
+          <label className="menu__btn" htmlFor="menu__toggle">
+            <span></span>
+          </label>
+          <h1>MENU</h1>
+        </div>
+        <div>
+          <Image
+            src="/images/icon-company1.png"
+            width={70}
+            height={70}
+            alt="icon"
+          />
+        </div>
+        <div className="w-[200px] flex items-center justify-end  gap-4">
+          <Link href="/products/cart">
             <Image
-              src="/images/icon-company1.png"
-              width={70}
-              height={70}
-              alt="icon"
+              className="cursor-pointer"
+              width={25}
+              height={25}
+              src="/images/shopping-cart.png"
+              alt="icon-shop"
             />
-          </div>
-          <div className="w-[200px] flex items-center justify-end  gap-4">
-            <Link href="/products/cart">
-              <Image
-                className="cursor-pointer"
-                width={25}
-                height={25}
-                src="/images/shopping-cart.png"
-                alt="icon-shop"
-              />
-            </Link>
-          </div>
-        </motion.div>
+          </Link>
+        </div>
+      </motion.div>
       <div className="max-w-[1300px] mt-[100px] m-auto">
         {currentUrl !== "" && (
           <div className="py-[15px] mb-[15px]">

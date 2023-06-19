@@ -30,7 +30,7 @@ export default function SaleUP() {
       whileInView="visible"
       variants={variants}
       viewport={{ once: true }}
-      className="max-w-[1300px]  m-auto flex bg-[url('/images/bg-sale.png')] bg-cover rounded-3xl max-lg:justify-center max-lg:p-2 lg:justify-end bg-no-repeat my-[50px]"
+      className="max-w-[1300px] shadow-xl  m-auto flex bg-[url('/images/bg-sale.png')] bg-cover rounded-3xl max-lg:justify-center max-lg:p-2 lg:justify-end bg-no-repeat my-[50px]"
     >
       <div className="flex flex-col items-center lg:pt-[90px] lg:pb-[60px] lg:pr-[150px] gap-4">
         <button className="bg-[#d99613] max-lg:p-2 lg:py-[10px] lg:px-[25px] text-white rounded-2xl">

@@ -49,7 +49,7 @@ export default function AboutQuality() {
             : ""
           : ""
       }
-      className="lg:grid-cols-3  grid gap-7 bg-[#E2F4FF] sm:py-[44px] max-sm:p-2 sm:px-[120px] rounded-2xl my-[75px]"
+      className="lg:grid-cols-3 shadow-md  grid gap-7 bg-[#E2F4FF] sm:py-[44px] max-sm:p-2 sm:px-[120px] rounded-2xl my-[75px]"
     >
       <motion.div
         initial="initial"

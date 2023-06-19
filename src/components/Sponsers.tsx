@@ -20,7 +20,7 @@ export default function Sponsers() {
   };
 
   return (
-    <motion.section className="max-sm:justify-center flex justify-between max-lg:flex-wrap max-lg:gap-5 lg:max-w-[1300px] max-xl:w-full bg-[#E2F4FF] py-[40px] px-[30px] items-center my-[50px]">
+    <motion.section className="max-sm:justify-center flex justify-between max-lg:flex-wrap shadow-md rounded-md max-lg:gap-5 lg:max-w-[1300px] max-xl:w-full bg-[#E2F4FF] py-[40px] px-[30px] items-center my-[50px]">
       {imagesURL.map((value, index) => {
         return (
           <motion.img

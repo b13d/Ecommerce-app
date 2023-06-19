@@ -162,7 +162,7 @@ export default function PopularProducts() {
                   whileInView="visible"
                   viewport={{ once: true }}
                   key={index}
-                  className="flex flex-col border rounded-xl p-4"
+                  className="shadow-md flex flex-col border rounded-xl p-4"
                 >
                   <div className="flex justify-end gap-2">
                     <button onClick={() => handleClickBuy(value)}>

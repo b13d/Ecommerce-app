@@ -41,7 +41,7 @@ export default function RelatedProduct({ currentIndex }: IPropsProduct) {
   // console.log(currentIndex);
   // console.log(listNumber);
   return (
-    <section className="max-sm: max-md:items-center max-md:justify-center flex flex-wrap gap-4 mb-[150px]">
+    <section className="max-sm: max-md:items-center max-md:justify-center flex flex-wrap gap-4 mb-10 p-5">
       {listNumber.map((currentNumber, index) => {
         return (
           <Link

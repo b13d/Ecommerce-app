@@ -31,7 +31,7 @@ export default function Comments() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={variants}
-              className="flex flex-col gap-5 border p-4 border-[#cfcfcf] rounded-2xl"
+              className="flex shadow-md flex-col gap-5 border p-4 border-[#cfcfcf] rounded-2xl"
             >
               <div className="flex gap-5 items-center">
                 <img src={value} alt="icon" />

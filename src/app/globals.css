@@ -3,11 +3,17 @@
 @tailwind utilities;
 
 
+body {
+  background: #80808029;
+}
+
 .wrapper {
+  border-radius: 20px;
+  background: white;
   min-height: 100vh;
   max-width: 1440px;
   margin: 0 auto;
-  margin-top: 100px;
+  /* margin-top: 100px; */
   position: relative;
 }
 

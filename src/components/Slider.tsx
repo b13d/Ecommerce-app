@@ -86,7 +86,7 @@ export default function Slider() {
   // }, []);
 
   return (
-    <div className="xl:w-[1300px] max-xl:w-full m-auto justify-center overflow-hidden">
+    <div className="xl:w-[1300px] shadow-md mb-5 max-xl:w-full m-auto justify-center overflow-hidden">
       <motion.div className="flex gap-4 py-5 w-full justify-center">
         <motion.div
           style={{ x }}
