@@ -122,7 +122,7 @@ export default function UseCart() {
   }, [scrollY]);
 
   return (
-    <section className="max-w-[1300px] min-h-[100vh] bg-white rounded-md lg:p-10 mb-10 m-auto flex max-sm:flex-col gap-2 items-start justify-between">
+    <section className="max-w-[1300px] min-h-[100vh] bg-white rounded-md lg:p-10 m-auto flex max-sm:flex-col gap-2 items-start justify-between">
       <div className="sm:w-[100%] ">
         <div className="list-products grid mb-6">
           <div className="grid gridCol grid-cols-4 bg-[#ffffff] shadow-lg  rounded-xl max-sm:p-2 sm:px-[30px] sm:py-[15px] ">
