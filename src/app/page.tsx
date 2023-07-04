@@ -9,7 +9,7 @@ import CartComponent from "@/components/CartComponent";
 export default function home() {
   return (
     <>
-      <div className="wrapper">
+      <div className="wrapper max-sm:px-2">
         <Header />
         <PopularProducts />
         <LatestNews />

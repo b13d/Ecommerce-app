@@ -71,7 +71,7 @@ export default function Header() {
       }
       <motion.div
         // style={{ translateY: scrollY }}
-        className="wrapper-header left-0 w-full z-10 fixed m-auto top-0 m flex justify-around pt-[20px]  pb-[20px] bg-white/30 backdrop-blur items-center"
+        className="wrapper-header max-sm:px-2 left-0 w-full z-10 fixed m-auto top-0 m flex justify-around pt-[20px]  pb-[20px] bg-white/30 backdrop-blur items-center"
       >
         <div className="w-[200px] flex items-center gap-4">
           <input
