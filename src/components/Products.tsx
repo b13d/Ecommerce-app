@@ -199,7 +199,7 @@ export default function Products() {
   }, [ref]);
   return (
     <div className="max-w-[1300px] m-auto">
-      <div className="max-sm:flex-col  max-sm:justify-center flex gap-2 mb-4">
+      <div className="max-sm:flex-col  max-sm:justify-center flex gap-2">
         <section className="max-sm:m-auto max-sm:px-2 leftProducts w-[320px] ">
           <div className="border-b-2 border-gray pb-4 mb-4">
             <div className="flex justify-between pb-3">

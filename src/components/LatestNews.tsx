@@ -24,7 +24,7 @@ export default function LatestNews() {
   const handleClickShow = () => {};
 
   return (
-    <section className="max-w-[1300px] m-auto mb-[50px]">
+    <section className="max-w-[1300px] m-auto">
       <div className="flex justify-between mb-[53px] text-[#1B5A7D]">
         <h1 className="text-[24px] font-bold">Latest news</h1>
 

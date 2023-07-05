@@ -7,7 +7,7 @@ import UseCart from "@/hooks/useCart";
 export default function Cart() {
   return (
     <section>
-      <div className="wrapper max-sm:px-2 md:px-5">
+      <div className="wrapper max-sm:px-2 max-sm:mx-2 md:px-5">
         <Header />
         <UseCart />
       </div>
