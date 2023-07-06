@@ -149,7 +149,7 @@ export default function UseCart() {
                   <Link href={`/products/${value.id}`}>
                     <div className="flex max-lg:flex-col gap-2 items-center justify-center text-center">
                       <Image
-                        className="max-lg:w-[100px] max-h-[100px]"
+                        className="max-lg:w-[100px] max-h-fit"
                         width={135}
                         height={120}
                         src={value.url[0]}
@@ -174,7 +174,7 @@ export default function UseCart() {
                   <div className="flex gap-1 max-lg:flex-col  justify-center items-center">
                     <button
                       onClick={() => handleSubtract(index)}
-                      className="w-[40px] h-[40px] hover:bg-[#2e2e2e] hover:text-white bg-[#f0f0f0] duration-300 ease-in-out text-black  "
+                      className="w-[40px] h-[40px] active:bg-[#2e2e2e] active:text-white bg-[#f0f0f0] duration-300 ease-in-out text-black  "
                     >
                       -
                     </button>
@@ -183,7 +183,7 @@ export default function UseCart() {
                     </button>
                     <button
                       onClick={() => handleAdd(index)}
-                      className="w-[40px] h-[40px] hover:bg-[#2e2e2e] hover:text-white  bg-[#f0f0f0] duration-300 ease-in-out text-black "
+                      className="w-[40px] h-[40px] active:bg-[#2e2e2e] active:text-white  bg-[#f0f0f0] duration-300 ease-in-out text-black "
                     >
                       +
                     </button>
@@ -200,7 +200,7 @@ export default function UseCart() {
 
                   <div
                     onClick={(e) => handleDelete(e, index)}
-                    className="max-sm:top-2 cursor-pointer absolute right-0 border text-white bg-red-500  px-2  rounded-full"
+                    className="max-sm:top-2 cursor-pointer absolute lg:right-5 right-0 border text-white bg-red-500  px-2  rounded-full"
                   >
                     x
                   </div>

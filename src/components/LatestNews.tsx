@@ -28,9 +28,9 @@ export default function LatestNews() {
       <div className="flex justify-between mb-[53px] text-[#1B5A7D]">
         <h1 className="text-[24px] font-bold">Latest news</h1>
 
-        <Link onClick={handleClickShow} href="#">
+        {/* <Link onClick={handleClickShow} href="#">
           <p className="font-semibold">View all</p>
-        </Link>
+        </Link> */}
       </div>
 
       <div className="grid max-sm:grid-cols-1 sm:grid-cols-2 gap-6 pb-10">

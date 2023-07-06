@@ -80,19 +80,38 @@ export default function Product({ params }: { params: { id: string } }) {
       setShowCart(true);
     };
 
+    const handleBuyNow = () => {
+      let actualPriceProduct = document.querySelector(".price")?.innerHTML;
+      let currentGigabyte = document.querySelector(".gigabyte")?.innerHTML;
+
+      if (Number(actualPriceProduct) > data.price) {
+        let productTitle = data.title + " " + ` GB: ${currentGigabyte}`;
+
+        let tempData: IApi = {
+          id: data.id,
+          category: data.category,
+          color: data.color,
+          description: data.description,
+          price: Number(actualPriceProduct),
+          star: data.star,
+          title: productTitle,
+          url: data.url,
+          gigabytes: data.gigabytes,
+        };
+        // let oldPrice = data.price;
+        // tempData.price = Number(actualPriceProduct);
+
+        setProducts(tempData);
+        setNewPrice(undefined);
+        // data.price = oldPrice;
+      } else setProducts(data);
+      setShowCart(true);
+    };
+
     return (
       <>
         <section className="max-w-[1300px] bg-white rounded-md px-2 m-auto mt-[100px]">
           <Header />
-          {/* <div className="text-right mb-5">
-            <Link
-              className="border py-3 px-5  text-center hover:bg-black hover:text-white duration-300"
-              href="/"
-            >
-              Вернуться
-            </Link>
-          </div> */}
-
           <section className="max-md:flex-col max-md:justify-center p-5 flex gap-10 mb-5">
             <div className="flex justify-center items-center m-auto flex-col gap-4">
               <div>
@@ -140,20 +159,6 @@ export default function Product({ params }: { params: { id: string } }) {
               </div>
 
               <div className="flex flex-col gap-8 border-b-2 border-[#BDBDBD] pb-4 mb-4">
-                {/* <div className="flex gap-2 items-center">
-                  <span>Color: </span>
-                  {data !== undefined
-                    ? data.color.map((value, index) => {
-                        return (
-                          <span
-                            key={index}
-                            style={{ background: value }}
-                            className={`cursor-pointer w-[15px] h-[15px] border  rounded-md block`}
-                          ></span>
-                        );
-                      })
-                    : ""}
-                </div> */}
                 {data.gigabytes && (
                   <div className="flex gap-2 flex-wrap items-center">
                     <span>gigabytes: </span>
@@ -193,9 +198,14 @@ export default function Product({ params }: { params: { id: string } }) {
                 >
                   Add to cart
                 </button>
-                <button className="bg-[#000000] py-3 w-[150px] rounded-sm text-[white] hover:bg-white hover:border hover:border-[#1d1d1d] duration-300 hover:text-black">
-                  Buy it now
-                </button>
+                <Link href="/products/cart">
+                  <button
+                    onClick={() => handleBuyNow()}
+                    className="bg-[#000000] py-3 w-[150px] rounded-sm text-[white] hover:bg-white hover:border hover:border-[#1d1d1d] duration-300 hover:text-black"
+                  >
+                    Buy it now
+                  </button>
+                </Link>
                 {/* <div className="hover:cursor-pointer object-contain border-2 rounded-md duration-300 hover:bg-slate-400 border-black ">
                   <img
                     className="w-[36px] h-[36px]"
