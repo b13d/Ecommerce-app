@@ -52,6 +52,7 @@ export default function UseCart() {
   };
 
   const [countQuantity, setCountQuantity] = useState<number[]>([]);
+  const [showBuyWindow, setShowBuyWindow] = useState<boolean>(false);
 
   useEffect(() => {
     let arr: number[] = [];
@@ -121,8 +122,25 @@ export default function UseCart() {
     console.log(scrollY.getPrevious());
   }, [scrollY]);
 
+  const handeBuy = () => {
+    setShowBuyWindow(true);
+    handleDeleteAll();
+
+    setTimeout(() => {
+      setShowBuyWindow(false);
+    }, 3000);
+  };
+
   return (
     <section className="max-w-[1300px] min-h-[100vh] bg-white rounded-md lg:p-10 m-auto flex max-sm:flex-col gap-2 items-start justify-between">
+      {showBuyWindow && (
+        <div className="bg-[#000000cb] z-50 w-full h-full fixed top-0 left-0"></div>
+      )}
+      {showBuyWindow && (
+        <div className="bg-[#357a3b60] w-[300px] m-auto fixed top-[25%] left-0 right-0 z-[100] h-[300px] text-center">
+          <h1 className="pt-[50%] text-[#15ff00]">Вы приобрели товары!</h1>
+        </div>
+      )}
       <div className="sm:w-[100%] max-sm:m-auto">
         <div className="list-products grid mb-6">
           <div className="grid gridCol grid-cols-4 bg-[#ffffff] max-sm:gap-3 shadow-lg  rounded-xl max-sm:p-2 sm:px-[30px] sm:py-[15px] ">
@@ -265,8 +283,11 @@ export default function UseCart() {
               <h1>{discount !== 0 ? sum - (sum / 100) * discount : sum}₽</h1>
             </div>
 
-            <button className="py-3 px-9 w-[80%] bg-[#EDA415] m-auto text-white rounded-3xl">
-              Proceed to ckeckout
+            <button
+              onClick={() => handeBuy()}
+              className="py-3 px-9 w-[80%] bg-[#5db829] m-auto text-white rounded-xl"
+            >
+              Buy
             </button>
           </div>
         </div>
