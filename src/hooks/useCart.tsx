@@ -240,11 +240,11 @@ export default function UseCart() {
               <h1>{sum}₽</h1>
             </div>
 
-            <div className="relative flex-wrap flex items-center max-sm:gap-2  pb-3 mb-3">
+            <div className="relative flex-wrap max-sm:justify-end flex items-center max-sm:gap-2  pb-3 mb-3">
               <input
                 ref={refInput}
                 type="text"
-                className="border rounded-2xl max-sm:pr-0 py-4 px-4"
+                className="max-sm:w-full border rounded-2xl max-sm:pr-0 py-4 px-4"
                 placeholder="Enter coupon code"
               />
               <span
