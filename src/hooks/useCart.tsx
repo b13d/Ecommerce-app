@@ -19,7 +19,6 @@ export default function UseCart() {
   const [products, setProducts] = useState<IApi[]>([]);
   const [currentWidthScreen, setCurrentWidthScreen] = useState<number>(
     0
-    // document.getElementsByTagName("body")[0].clientWidth
   );
   useEffect(() => {
     if (localProducts !== null) {
@@ -64,7 +63,6 @@ export default function UseCart() {
     setCountQuantity(arr);
   }, [products]);
 
-  const { scrollYProgress, scrollY } = useScroll();
   let sum: number = 0;
 
   const handleSubtract = (currentIndex: number) => {
@@ -104,23 +102,6 @@ export default function UseCart() {
 
     setCountQuantity(tempArr);
   };
-
-  let widthScreen: number = 0;
-  // document.getElementsByTagName("body")[0].clientWidth;
-
-  useEffect(() => {
-    widthScreen = document.getElementsByTagName("body")[0].clientWidth;
-
-    if (widthScreen > 1000 && currentWidthScreen < 1000) {
-      setCurrentWidthScreen(widthScreen);
-    } else if (widthScreen < 1000 && currentWidthScreen > 1000) {
-      setCurrentWidthScreen(widthScreen);
-    }
-  }, [scrollY]);
-
-  useEffect(() => {
-    console.log(scrollY.getPrevious());
-  }, [scrollY]);
 
   const handeBuy = () => {
     setShowBuyWindow(true);
@@ -248,9 +229,6 @@ export default function UseCart() {
       </div>
 
       <motion.div
-        style={{
-          y: currentWidthScreen > 1000 ? scrollY : 0,
-        }}
         className="flex flex-col max-sm:rounded-md shadow-md relative mb-6 max-sm:w-full  max-sm:p-1"
       >
         <div className="bg-[#ffffff] shadow-lg rounded-xl max-sm:p-2 max-sm:mb-2 sm:px-[30px] sm:py-[15px]">
