@@ -132,7 +132,7 @@ export default function UseCart() {
   };
 
   return (
-    <section className="max-w-[1300px] min-h-[100vh] bg-white rounded-md lg:p-10 m-auto flex max-sm:flex-col gap-2 items-start justify-between">
+    <section className="max-w-[1300px]  bg-white rounded-md lg:p-10 m-auto flex max-sm:flex-col gap-2 items-start justify-between">
       {showBuyWindow && (
         <div className="bg-[#000000cb] z-50 w-full h-full fixed top-0 left-0"></div>
       )}
@@ -251,7 +251,7 @@ export default function UseCart() {
         style={{
           y: currentWidthScreen > 1000 ? scrollY : 0,
         }}
-        className="grid max-sm:rounded-md shadow-md relative mb-6 max-sm:w-full  max-sm:p-1"
+        className="flex flex-col max-sm:rounded-md shadow-md relative mb-6 max-sm:w-full  max-sm:p-1"
       >
         <div className="bg-[#ffffff] shadow-lg rounded-xl max-sm:p-2 max-sm:mb-2 sm:px-[30px] sm:py-[15px]">
           <h1>Cart total</h1>
@@ -267,7 +267,7 @@ export default function UseCart() {
               <input
                 ref={refInput}
                 type="text"
-                className="border rounded-2xl py-4 px-4"
+                className="border rounded-2xl max-sm:pr-0 py-4 px-4"
                 placeholder="Enter coupon code"
               />
               <span
