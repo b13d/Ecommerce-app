@@ -26,7 +26,6 @@ export default function UseCart() {
     }
   }, []);
 
-  // localProducts !== null ? JSON.parse(localProducts) : []
   const handleDelete = (
     element: React.MouseEvent<HTMLDivElement, MouseEvent>,
     currentIndex: number
@@ -241,7 +240,7 @@ export default function UseCart() {
               <h1>{sum}₽</h1>
             </div>
 
-            <div className="relative  flex items-center max-sm:gap-2  pb-3 mb-3">
+            <div className="relative flex-wrap flex items-center max-sm:gap-2  pb-3 mb-3">
               <input
                 ref={refInput}
                 type="text"
