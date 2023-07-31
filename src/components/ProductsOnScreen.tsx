@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function ProductsOnScreen(productsOnScreen: IApi[]) {
   let newProducts = Object.entries(productsOnScreen);
   return (
-    newProducts.length > 1 &&
+    newProducts.length >= 1 &&
     newProducts.map((value, index) => {
       return (
         <Link key={value[1].id} href={`/products/${value[1].id}`}>
