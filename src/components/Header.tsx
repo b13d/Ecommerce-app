@@ -71,7 +71,7 @@ export default function Header() {
       }
       <motion.div
         // style={{ translateY: scrollY }}
-        className="wrapper-header max-sm:px-2 left-0 w-full z-10 fixed m-auto top-0 m flex justify-around pt-[20px]  pb-[20px] bg-white/30 backdrop-blur items-center"
+        className="wrapper-header max-sm:px-2 left-0 w-full z-10 fixed m-auto top-0 m flex justify-around py-1 bg-white/30 backdrop-blur items-center"
       >
         <div className="w-[200px] flex items-center gap-4">
           <input
@@ -87,12 +87,14 @@ export default function Header() {
           <h1>MENU</h1>
         </div>
         <div>
-          <Image
-            src="/images/icon-company1.png"
-            width={70}
-            height={70}
-            alt="icon"
-          />
+          <Link href="/">
+            <Image
+              src="/images/icon-company1.png"
+              width={70}
+              height={70}
+              alt="icon"
+            />
+          </Link>
         </div>
         <div className="w-[200px] flex items-center justify-end  gap-4">
           <Link href="/products/cart">

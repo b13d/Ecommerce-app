@@ -2,12 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-interface IPos {
-  posX: string;
-  posY: string;
-  indexElement: number;
-}
+import { IPos } from "@/interfaces";
 
 export default function ElementBuy({
   posX,

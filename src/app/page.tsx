@@ -5,16 +5,16 @@ import PopularProducts from "@/components/PopularProducts";
 import LatestNews from "@/components/LatestNews";
 import Footer from "@/components/Footer";
 import CartComponent from "@/components/CartComponent";
+import { Container } from "@mui/material";
 
 export default function home() {
   return (
     <>
-      <div className="wrapper max-sm:px-2">
+      <Container>
         <Header />
         <PopularProducts />
         <LatestNews />
-      </div>
-      {/* <CartComponent /> */}
+      </Container>
       <Footer />
     </>
   );

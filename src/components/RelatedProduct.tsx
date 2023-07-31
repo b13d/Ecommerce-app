@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ApiElectronics from "@/api/apiElectronics.json";
-import { IApi } from "./CartComponent";
+import { IApi, IPropsProduct } from "@/interfaces";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-interface IPropsProduct {
-  currentIndex: number;
-}
+
 
 export default function RelatedProduct({ currentIndex }: IPropsProduct) {
   let listApi: IApi[] = ApiElectronics;

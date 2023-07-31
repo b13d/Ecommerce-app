@@ -3,24 +3,7 @@
 import React, { useState, useEffect, createContext } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
-export interface IApi {
-  id: number;
-  url: string[];
-  title: string;
-  price: number;
-  star: number;
-  color: string[];
-  category: string;
-  gigabytes?: number[];
-  description: string;
-}
-
-interface IProps {
-  newProduct: IApi | undefined;
-  showCart: boolean;
-  setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { IApi, IProps } from "@/interfaces";
 
 export default function CartComponent({
   newProduct,

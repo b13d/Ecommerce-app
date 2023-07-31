@@ -1,22 +1,15 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
-import apiElectronics from "../api/apiElectronics.json";
-import { count } from "console";
-import { IApi } from "./CartComponent";
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-
-interface ICategories {
-  name: string;
-  checked: boolean;
-}
-
-interface ILastELemet {
-  element: React.ChangeEvent<HTMLInputElement> | HTMLInputElement | undefined;
-  nameElement: string;
-}
+import {
+  ICategories,
+  ILastELement,
+  IApi,
+  ICheckboxCategories,
+} from "@/interfaces";
+import CheckboxCategories from "./CheckboxCategories";
+import { handleChangeCategories } from "./CheckboxCategories";
+import ProductsOnScreen from "./ProductsOnScreen";
 
 export default function Products() {
   const [listCategories, setListCategories] = useState<ICategories[]>([
@@ -38,158 +31,45 @@ export default function Products() {
     },
   ]);
 
-  const [lastChangeElement, setLastChangeElement] = useState<ILastELemet>();
+  const [lastChangeElement, setLastChangeElement] = useState<ILastELement>();
   const [rangeValue, setRangeValue] = useState<string>("25000");
   const [productsOnScreen, setProductsOnScreen] = useState<IApi[]>([]);
   const [firstElement, setFirstElement] = useState<HTMLInputElement>();
 
   let ref = useRef(null);
-  // checked categories
+  let tempCategories: ICheckboxCategories = {
+    listCategories: listCategories,
+    productsOnScreen: productsOnScreen,
+    rangeValue: rangeValue,
+    setLastChangeElement: setLastChangeElement,
+    setProductsOnScreen: setProductsOnScreen,
+  };
 
   useEffect(() => {
-    if (firstElement !== undefined)
-      handleChange(firstElement, "All categories", Number(rangeValue), true);
-  }, [firstElement]);
-
-  const handleChange = (
-    element: React.ChangeEvent<HTMLInputElement> | HTMLInputElement | undefined,
-    nameElement: string,
-    currentRangeValue?: number,
-    firstDownload?: boolean
-  ) => {
-    let tempLastElement: ILastELemet = {
-      element,
-      nameElement,
-    };
-
-    let temp = apiElectronics.filter(
-      (value) => value.category === nameElement.toLowerCase()
-    );
-
-    if (currentRangeValue === undefined) currentRangeValue = Number(rangeValue);
-
-    // debugger;
-
-    if (firstDownload) {
-      listCategories[0].checked = true;
-
-      let tempArr: IApi[] = [];
-
-      apiElectronics.map((value) => {
-        if (
-          currentRangeValue !== undefined
-            ? value.price <= currentRangeValue ||
-              (value.price >= 50000 && currentRangeValue === 50000)
-            : true
-        )
-          tempArr.push(value);
-      });
-
-      setLastChangeElement(tempLastElement);
-      setProductsOnScreen([...tempArr]);
-    } else if (
-      element !== undefined
-        ? !(element instanceof HTMLInputElement)
-          ? element.target.checked
-          : element.checked
-        : false
-    ) {
-      let tempArr: IApi[] = [];
-
-      setLastChangeElement(tempLastElement);
-      if (nameElement === "All categories") {
-        listCategories.map((value, index) => {
-          index === 0 ? (value.checked = true) : (value.checked = false);
-        });
-
-        apiElectronics.map((value) => {
-          if (
-            currentRangeValue !== undefined
-              ? value.price <= currentRangeValue ||
-                (value.price >= 50000 && currentRangeValue === 50000)
-              : true
-          )
-            tempArr.push(value);
-        });
-      } else {
-        // tempArr = productsOnScreen;
-        tempArr = [];
-
-        if (listCategories[0].checked) {
-          listCategories[0].checked = false;
-
-          tempArr = [];
-        }
-
-        let tempCategory = listCategories.filter(
-          (value) => value.name === nameElement
-        );
-
-        tempCategory.map((value) => {
-          value.checked = true;
-        });
-
-        // добавление продуктов у которых в listCategories стоит true
-
-        listCategories.forEach((listCategoriesValue) => {
-          apiElectronics.filter((apiElectronicsValue) => {
-            if (
-              apiElectronicsValue.category ===
-                listCategoriesValue.name.toLowerCase() &&
-              listCategoriesValue.checked &&
-              currentRangeValue !== undefined &&
-              (apiElectronicsValue.price < currentRangeValue ||
-                (apiElectronicsValue.price >= 50000 &&
-                  currentRangeValue === 50000))
-            ) {
-              tempArr.push(apiElectronicsValue);
-            }
-          });
-        });
-      }
-
-      setProductsOnScreen([...tempArr]);
-      // console.log(tempArr);
-    } else {
-      let tempArr: IApi[] = [];
-
-      if (nameElement === "All categories") {
-        listCategories[0].checked = false;
-      } else {
-        if (!listCategories[0].checked) {
-          let tempCategory = listCategories.filter(
-            (value) => value.name === nameElement
-          );
-
-          tempCategory.map((value) => {
-            value.checked = false;
-          });
-
-          productsOnScreen.map((value) => {
-            if (value.category !== nameElement.toLowerCase()) {
-              tempArr.push(value);
-            }
-          });
-        } else tempArr = productsOnScreen;
-      }
-      setProductsOnScreen([...tempArr]);
+    if (firstElement !== undefined) {
+      handleChangeCategories(
+        firstElement,
+        "All categories",
+        tempCategories,
+        Number(rangeValue),
+        true
+      );
     }
-  };
+  }, [firstElement]);
 
   const handleRange = (element: React.ChangeEvent<HTMLInputElement>) => {
     let tempValue = Number(element.target.value) * 500;
 
     if (lastChangeElement !== undefined)
-      handleChange(
+      handleChangeCategories(
         lastChangeElement.element,
         lastChangeElement.nameElement,
+        tempCategories,
         tempValue
       );
 
     setRangeValue(tempValue.toString());
   };
-
-  // console.log(listCategories);
 
   useEffect(() => {
     let list = document.querySelector(".list-categories");
@@ -197,6 +77,7 @@ export default function Products() {
     if (list !== null)
       setFirstElement(list.children[0].getElementsByTagName("input")[0]);
   }, [ref]);
+
   return (
     <div className="max-w-[1300px] m-auto">
       <div className="max-sm:flex-col  max-sm:justify-center flex gap-2">
@@ -207,32 +88,13 @@ export default function Products() {
               <h1 className="cursor-pointer text-[#888585]">Reset</h1>
             </div>
             <ul className="list-categories flex flex-col gap-1">
-              {listCategories.map((value, index) => {
-                return (
-                  <li key={index} className="flex justify-between">
-                    <div>
-                      <input
-                        ref={ref}
-                        className="mr-1"
-                        onChange={(e) => handleChange(e, value.name)}
-                        type="checkbox"
-                        checked={listCategories[index].checked}
-                      />
-                      <label>{value.name}</label>
-                    </div>
-
-                    <span>
-                      {value.name === "All categories"
-                        ? apiElectronics.length
-                        : apiElectronics.filter((currentValue) =>
-                            currentValue.category.includes(
-                              value.name.toLowerCase()
-                            )
-                          ).length}
-                    </span>
-                  </li>
-                );
-              })}
+              <CheckboxCategories
+                listCategories={listCategories}
+                productsOnScreen={productsOnScreen}
+                rangeValue={rangeValue}
+                setLastChangeElement={setLastChangeElement}
+                setProductsOnScreen={setProductsOnScreen}
+              />
             </ul>
           </div>
           <div className="border-b-2 border-gray pb-4 mb-4">
@@ -258,38 +120,7 @@ export default function Products() {
           </div>
         </section>
         <section className="justify-center right-products grid gap-3 w-[100%] grid-rows-[350px] pb-5">
-          {productsOnScreen.map((value: IApi, index) => {
-            return (
-              <Link  key={value.id} href={`/products/${value.id}`}>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{
-                    duration: 0.5,
-                    type: "spring",
-                    stiffness: 10,
-                  }}
-                  className="shadow-md flex flex-col border rounded-xl p-4 pb-8 h-[350px]"
-                >
-                  <div className="h-[220px] flex flex-col justify-center relative">
-                    <p className="text-right font-bold">{value.price} ₽</p>
-
-                    <img
-                      className="mb-4 m-auto object-scale-down w-[200px] h-[180px]"
-                      src={value.url[0]}
-                      alt="popular-item"
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-4">
-                    <p className="text-[#1B5A7D] font-semibold">
-                      {value.title}
-                    </p>
-                  </div>
-                </motion.div>
-              </Link>
-            );
-          })}
+          <ProductsOnScreen {...productsOnScreen}/>
         </section>
       </div>
     </div>
