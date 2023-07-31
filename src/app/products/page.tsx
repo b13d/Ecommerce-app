@@ -10,7 +10,7 @@ import { Container } from "@mui/material";
 export default function products() {
   return (
     <>
-      <Container>
+      <Container className="bg-[white]">
         <Header />
         <Products />
       </Container>

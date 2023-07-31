@@ -15,7 +15,7 @@ import {
   stagger,
 } from "framer-motion";
 import apiElectronics from "../api/apiElectronics.json";
-import { IApi } from "./CartComponent";
+import { IApi } from "@/interfaces";
 
 export default function Slider() {
   const [images, setImages] = useState<IApi[]>([]);
@@ -86,13 +86,11 @@ export default function Slider() {
   // }, []);
 
   return (
-    <div className="xl:w-[1300px] shadow-md mb-5 max-xl:w-full m-auto justify-center overflow-hidden">
+    <div className=" shadow-md mb-5 max-xl:w-full m-auto justify-center overflow-hidden">
       <motion.div className="flex gap-4 py-5 w-full justify-center">
         <motion.div
           style={{ x }}
-          transition={{
-
-          }}
+          transition={{}}
           ref={scope}
           className="flex shrink-0 gap-4"
         >

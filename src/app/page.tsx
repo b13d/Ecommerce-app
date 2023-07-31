@@ -10,7 +10,7 @@ import { Container } from "@mui/material";
 export default function home() {
   return (
     <>
-      <Container>
+      <Container className="bg-[white]">
         <Header />
         <PopularProducts />
         <LatestNews />
