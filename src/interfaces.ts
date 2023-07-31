@@ -37,6 +37,18 @@ export interface IProps {
   setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+export interface IPopularProductsImage {
+  images: IApi[];
+  currentCategory: string;
+  handleClickBuy: (newProduct: IApi) => Promise<void>;
+  setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
+  listElementsBuy: React.JSX.Element[];
+  setCurrentKey: React.Dispatch<React.SetStateAction<number>>;
+  currentKey: number;
+  setListElementsBuy: React.Dispatch<React.SetStateAction<React.JSX.Element[]>>;
+  setShowElement: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export interface ICategories {
   name: string;
   checked: boolean;
